@@ -17,10 +17,11 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 @Entity
-public class Volunteer {
+public class Student {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long volunteerId;
+    private Long studentId;
     private String username;
     private String firstname;
     private String lastname;
@@ -28,22 +29,22 @@ public class Volunteer {
     private Boolean isAvailable;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "volunteer_topics",
-        joinColumns = { @JoinColumn(name = "volunteer_id") },
+    @JoinTable(name = "student_topics",
+        joinColumns = { @JoinColumn(name = "student_id") },
         inverseJoinColumns = { @JoinColumn(name = "topic_id") })
     @JsonIgnoreProperties({"students","volunteers"})
     private Set<Topic> topics = new HashSet<>();
 
-    public Volunteer () {
+    public Student () {
 
     }
 
-    public Long getVolunteerId() {
-        return volunteerId;
+    public Long getStudentId() {
+        return studentId;
     }
 
-    public void setVolunteerId(Long volunteerId) {
-        this.volunteerId = volunteerId;
+    public void setStudentId(Long studentId) {
+        this.studentId = studentId;
     }
 
     public String getUsername() {
@@ -96,8 +97,8 @@ public class Volunteer {
 
     @Override
     public String toString() {
-        return "Volunteer [contact=" + contact + ", firstname=" + firstname + ", isAvailable=" + isAvailable
-                + ", lastname=" + lastname + ", topics=" + topics + ", username=" + username + ", volunteerId="
-                + volunteerId + "]";
+        return "Student [contact=" + contact + ", firstname=" + firstname + ", isAvailable=" + isAvailable
+                + ", lastname=" + lastname + ", studentId=" + studentId + ", topics=" + topics + ", username="
+                + username + "]";
     }
 }

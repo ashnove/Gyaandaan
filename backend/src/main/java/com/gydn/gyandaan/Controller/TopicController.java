@@ -2,7 +2,7 @@ package com.gydn.gyandaan.Controller;
 
 import java.util.List;
 
-import com.gydn.gyandaan.Entity.Topics;
+import com.gydn.gyandaan.Entity.Topic;
 import com.gydn.gyandaan.Service.TopicService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +22,12 @@ public class TopicController {
     TopicService topicService;
 
     @PostMapping("/addTopic")
-    public List<Topics> saveTopicController(@RequestBody List<Topics> topic){
+    public List<Topic> saveTopicController(@RequestBody List<Topic> topic){
         return topicService.saveTopicService(topic);
     }
 
     @GetMapping("/topics")
-    public List<Topics> getAllTopicsController() {
+    public List<Topic> getAllTopicsController() {
         return topicService.getAllTopicsService();
     }
 }

@@ -2,7 +2,7 @@ package com.gydn.gyandaan.Service;
 
 import java.util.List;
 
-import com.gydn.gyandaan.Entity.Topics;
+import com.gydn.gyandaan.Entity.Topic;
 import com.gydn.gyandaan.Repository.TopicRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +13,10 @@ public class TopicService {
     @Autowired
     TopicRepository topicRepository;
 
-    public List<Topics> saveTopicService(List<Topics> topic){
+    public List<Topic> saveTopicService(List<Topic> topic){
         return topicRepository.saveAll(topic);
     }
-    public List<Topics> getAllTopicsService(){
+    public List<Topic> getAllTopicsService(){
         return topicRepository.findAll();
     }
 }

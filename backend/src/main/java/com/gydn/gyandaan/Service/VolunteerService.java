@@ -1,9 +1,8 @@
 package com.gydn.gyandaan.Service;
 
 import java.util.List;
-import java.util.Objects;
 
-import com.gydn.gyandaan.Entity.Topics;
+import com.gydn.gyandaan.Entity.Topic;
 import com.gydn.gyandaan.Entity.Volunteer;
 import com.gydn.gyandaan.Repository.TopicRepository;
 import com.gydn.gyandaan.Repository.VolunteerRepository;
@@ -21,14 +20,14 @@ public class VolunteerService {
     TopicRepository topicRepository;
 
     public Volunteer saveVolunteerPrefService(Volunteer volunteer){
-        Volunteer getVolunteer = volunteerRepository.findVolunteerByName(volunteer.getName());
+        Volunteer getVolunteer = volunteerRepository.findVolunteerByName(volunteer.getUsername());
         volunteer.getTopics().forEach( (topic) -> {
-            Topics getTopic = topicRepository.findTopicByName(topic.getName());
+            Topic getTopic = topicRepository.findTopicByName(topic.getTopicName());
             getVolunteer.getTopics().add(getTopic);
         });
         try {
             volunteer.getTopics().forEach( (topic) -> {
-                Topics getTopic = topicRepository.findTopicByName(topic.getName());
+                Topic getTopic = topicRepository.findTopicByName(topic.getTopicName());
                 getTopic.getVolunteers().add(getVolunteer);
             });
         } 

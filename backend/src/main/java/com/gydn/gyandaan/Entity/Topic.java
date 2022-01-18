@@ -13,17 +13,21 @@ import javax.persistence.ManyToMany;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-public class Topics {
+public class Topic {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long topicId;
-    private String name;
+    private String topicName;
 
     @ManyToMany(mappedBy = "topics", fetch = FetchType.LAZY)
 	@JsonIgnoreProperties("topics")
 	private Set<Volunteer> volunteers = new HashSet<>() ;
 
-    public Topics() {
+    @ManyToMany(mappedBy = "topics", fetch = FetchType.LAZY)
+	@JsonIgnoreProperties("topics")
+	private Set<Student> students = new HashSet<>() ;
+
+    public Topic() {
 
     }
 
@@ -33,13 +37,14 @@ public class Topics {
     public void setTopicId(Long topicId) {
         this.topicId = topicId;
     }
-    public String getName() {
-        return name;
+    public String getTopicName() {
+        return topicName;
     }
-    public void setName(String name) {
-        this.name = name;
+
+    public void setTopicName(String topicName) {
+        this.topicName = topicName;
     }
-    
+
     public Set<Volunteer> getVolunteers() {
         return volunteers;
     }
@@ -47,10 +52,19 @@ public class Topics {
     public void setVolunteers(Set<Volunteer> volunteers) {
         this.volunteers = volunteers;
     }
+    
+    public Set<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(Set<Student> students) {
+        this.students = students;
+    }
 
     @Override
     public String toString() {
-        return "Topics [name=" + name + ", topicId=" + topicId + ", volunteers=" + volunteers + "]";
+        return "Topic [students=" + students + ", topicId=" + topicId + ", topicName=" + topicName + ", volunteers="
+                + volunteers + "]";
     }
 
     

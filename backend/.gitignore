@@ -4,6 +4,9 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+### Sensitive Data ###
+backend/src/main/resources/application.properties
+
 ### STS ###
 .apt_generated
 .classpath
@@ -18,7 +21,6 @@ target/
 *.iws
 *.iml
 *.ipr
-backend/src/main/resources/application.properties
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
@@ -31,3 +33,4 @@ build/
 
 ### VS Code ###
 .vscode/
+
