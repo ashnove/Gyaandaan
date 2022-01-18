@@ -38,12 +38,16 @@ const ResponsiveAppBar = () => {
 		setAnchorElUser(null);
 	};
 
-	const [status, setStatus] = React.useState(' ');
+	const [availability, setAvailability] = React.useState("Offline");
 
 	const handleStatusChange = (event) => {
-		setStatus(event.target.value);
+		setAvailability(event.target.value);
 	};
 
+	const options = [
+		'Online', 'Offline'
+	];
+	const lastSetStatus = options[1]; // 
 	return (
 		<AppBar position="static">
 			<Container maxWidth="xl">
@@ -54,7 +58,7 @@ const ResponsiveAppBar = () => {
 						component="div"
 						sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
 					>
-						GYAANDAAN
+						Gyandaan
 					</Typography>
 
 					<Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -66,7 +70,7 @@ const ResponsiveAppBar = () => {
 							onClick={handleOpenNavMenu}
 							color="inherit"
 						>
-							<MenuIcon />
+						<MenuIcon />
 						</IconButton>
 						<Menu
 							id="menu-appbar"
@@ -118,22 +122,7 @@ const ResponsiveAppBar = () => {
 							</Button>
 						</Link>
 					</Box>
-					<FormControl sx={{ minWidth: 120 }}>
-						<InputLabel id="online-status-label">Status</InputLabel>
-						<Select
-							labelId="online-status-label"
-							id="online-status"
-							value={status}
-							label="Status"
-							onChange={handleStatusChange}
-						>
-							{status == "Offline" ? (
-								<MenuItem value={"Online"}>Online</MenuItem>
-							) : (
-								<MenuItem value={"Offline"}>Offline</MenuItem>
-							)}
-						</Select>
-					</FormControl>
+					
 					<Link to="/logout" style={{ textDecoration: "none" }}>
 						<Button key="logout" sx={{ my: 2, color: "white", display: "block" }} underline="none">
 							Logout

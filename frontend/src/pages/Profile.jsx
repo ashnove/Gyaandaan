@@ -1,9 +1,9 @@
 import React from "react"
 
-const Profile = (props) => {
+function Profile(props)  {
 	return (
 		<div>
-			Profile Works!
+			This is Profile Page.
 		</div>
 	)
 }

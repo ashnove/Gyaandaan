@@ -1,9 +1,10 @@
 import React from "react"
 
-const Home = (props) => {
+function Home(props) {
+	
 	return (
 		<div>
-			Hello
+			This is Home Page.
 		</div>
 	)
 }
