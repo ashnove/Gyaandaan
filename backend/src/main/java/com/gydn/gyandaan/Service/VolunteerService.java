@@ -1,12 +1,15 @@
 package com.gydn.gyandaan.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 import com.gydn.gyandaan.Entity.Topic;
 import com.gydn.gyandaan.Entity.Volunteer;
 import com.gydn.gyandaan.Repository.TopicRepository;
 import com.gydn.gyandaan.Repository.VolunteerRepository;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,8 +22,11 @@ public class VolunteerService {
     @Autowired
     TopicRepository topicRepository;
 
+    Logger logger = LoggerFactory.getLogger(VolunteerService.class);
+
     public Volunteer saveVolunteerPrefService(Volunteer volunteer){
-        Volunteer getVolunteer = volunteerRepository.findVolunteerByName(volunteer.getUsername());
+        Volunteer getVolunteer = volunteerRepository.findVolunteerByName(volunteer.getVolunteerUsername());
+        logger.info( (Objects.isNull(getVolunteer)==true) ? volunteer.getVolunteerUsername() : "False" );
         volunteer.getTopics().forEach( (topic) -> {
             Topic getTopic = topicRepository.findTopicByName(topic.getTopicName());
             getVolunteer.getTopics().add(getTopic);

@@ -22,17 +22,17 @@ public class StudentController {
     StudentService studentService;
 
     @PostMapping("/saveStudentPref")
-    public Student saveVolunteerPrefController(@RequestBody Student student){
+    public Student saveStudentPrefController(@RequestBody Student student){
         return studentService.saveStudentPrefService(student);
     }
 
     @PostMapping("/addStudent")
-    public Student addVolunteerController(@RequestBody Student student){
+    public Student addStudentController(@RequestBody Student student){
         return studentService.addStudentService(student);
     }
 
     @GetMapping("/students")
-    public List<Student> getAllVolunteersController(){
+    public List<Student> getAllStudent(){
         return studentService.getAllStudentsService();
     }
 }

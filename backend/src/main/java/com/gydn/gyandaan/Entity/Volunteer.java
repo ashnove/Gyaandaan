@@ -1,9 +1,11 @@
 package com.gydn.gyandaan.Entity;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -12,6 +14,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.PrePersist;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -21,11 +26,21 @@ public class Volunteer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long volunteerId;
-    private String username;
-    private String firstname;
-    private String lastname;
-    private Long contact;
-    private Boolean isAvailable;
+    private String volunteerUsername;
+    private String volunteerFirstname;
+    private String volunteerLastname;
+    private String volunteerEmail;
+    private Long volunteerContact;
+    private Boolean volunteerIsAvailable;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable = false)
+    private Date volunteerTimestamp;
+
+    @PrePersist
+    private void onCreate() {
+        volunteerTimestamp = new Date();
+    }
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "volunteer_topics",
@@ -37,6 +52,20 @@ public class Volunteer {
     public Volunteer () {
 
     }
+    
+    public Volunteer(Long volunteerId, String volunteerUsername, Boolean volunteerIsAvailable) {
+        this.volunteerId = volunteerId;
+        this.volunteerUsername = volunteerUsername;
+        this.volunteerIsAvailable = volunteerIsAvailable;
+    }
+
+    public String getVolunteerEmail() {
+        return volunteerEmail;
+    }
+
+    public void setVolunteerEmail(String volunteerEmail) {
+        this.volunteerEmail = volunteerEmail;
+    }
 
     public Long getVolunteerId() {
         return volunteerId;
@@ -46,36 +75,52 @@ public class Volunteer {
         this.volunteerId = volunteerId;
     }
 
-    public String getUsername() {
-        return username;
+    public String getVolunteerUsername() {
+        return volunteerUsername;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setVolunteerUsername(String volunteerUsername) {
+        this.volunteerUsername = volunteerUsername;
     }
 
-    public String getFirstname() {
-        return firstname;
+    public String getVolunteerFirstname() {
+        return volunteerFirstname;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public void setVolunteerFirstname(String volunteerFirstname) {
+        this.volunteerFirstname = volunteerFirstname;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getVolunteerLastname() {
+        return volunteerLastname;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
-    
-    public Long getContact() {
-        return contact;
+    public void setVolunteerLastname(String volunteerLastname) {
+        this.volunteerLastname = volunteerLastname;
     }
 
-    public void setContact(Long contact) {
-        this.contact = contact;
+    public Long getVolunteerContact() {
+        return volunteerContact;
+    }
+
+    public void setVolunteerContact(Long volunteerContact) {
+        this.volunteerContact = volunteerContact;
+    }
+
+    public Boolean getVolunteerIsAvailable() {
+        return volunteerIsAvailable;
+    }
+
+    public void setVolunteerIsAvailable(Boolean volunteerIsAvailable) {
+        this.volunteerIsAvailable = volunteerIsAvailable;
+    }
+
+    public Date getVolunteerTimestamp() {
+        return volunteerTimestamp;
+    }
+
+    public void setVolunteerTimestamp(Date volunteerTimestamp) {
+        this.volunteerTimestamp = volunteerTimestamp;
     }
 
     public Set<Topic> getTopics() {
@@ -86,18 +131,12 @@ public class Volunteer {
         this.topics = topics;
     }
 
-    public Boolean getIsAvailable() {
-        return isAvailable;
-    }
-
-    public void setIsAvailable(Boolean isAvailable) {
-        this.isAvailable = isAvailable;
-    }
-
     @Override
     public String toString() {
-        return "Volunteer [contact=" + contact + ", firstname=" + firstname + ", isAvailable=" + isAvailable
-                + ", lastname=" + lastname + ", topics=" + topics + ", username=" + username + ", volunteerId="
-                + volunteerId + "]";
+        return "Volunteer [topics=" + topics + ", volunteerContact=" + volunteerContact + ", volunteerFirstname="
+                + volunteerFirstname + ", volunteerId=" + volunteerId + ", volunteerIsAvailable=" + volunteerIsAvailable
+                + ", volunteerLastname=" + volunteerLastname + ", volunteerTimestamp=" + volunteerTimestamp
+                + ", volunteerUsername=" + volunteerUsername + "]";
     }
+    
 }
