@@ -19,7 +19,7 @@ const bull = (
   const card = (
 	<React.Fragment>
 		<div>
-			<CardContent>
+			{/* <CardContent>
 				<Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
 				Word of the Day
 				</Typography>
@@ -34,13 +34,13 @@ const bull = (
 				<br />
 				{'"a benevolent smile"'}
 				</Typography>
-			</CardContent>
+			</CardContent> */}
 			<SingleSelectDropdown />
 		</div>
 
-	  <CardActions>
+	  {/* <CardActions>
 		<Button size="small">Learn More</Button>
-	  </CardActions>
+	  </CardActions> */}
 	</React.Fragment>
   );
 function Home(props) {

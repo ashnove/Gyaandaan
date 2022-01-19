@@ -57,6 +57,7 @@ export function MultipleSelectChip() {
             </Box>
           )}
           MenuProps={MenuProps}
+          style = {{background : "#ecf0f1"}}
         >
           {courses.map((course) => (
             <MenuItem
