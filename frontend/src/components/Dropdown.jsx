@@ -7,9 +7,10 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Chip from '@mui/material/Chip';
-import CallForActionButton from "./Buttons";
+import SubmitButton from "./Buttons";
 import courses from "../data/courses";
-import Axios from 'axios';
+
+
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -22,42 +23,32 @@ const MenuProps = {
   },
 };
 
-// const courses = getDropdown();
-// abhi ke lie courses ko data directory me rakha hai
-// badme iis function ko uncoment kr denge
 
-function getDropdown(){
-  Axios.get("./gydn/dropdown").then((response)=>{
-    console.log(response)
-  });
-}
-
-
-export default function MultipleSelectChip() {
+export function MultipleSelectChip() {
   const theme = useTheme();
-  const [expertise, setExpertise] = React.useState([]);
+  const [topics, setTopics] = React.useState([]);
 
   const handleChange = (event) => {
     const {
       target: { value },
     } = event;
-    setExpertise(
+    setTopics(
       // On autofill we get a stringified value.
       typeof value === 'string' ? value.split(',') : value,
     );
   };
 
   return (
-    <div>
+    <div className="expertiseDropdown">
       <FormControl sx={{ m: 1, width: 300 }}>
-        <InputLabel id="demo-multiple-chip-label">Chip</InputLabel>
+        <InputLabel id="demo-multiple-chip-label">Expertise</InputLabel>
         <Select
           labelId="demo-multiple-chip-label"
           id="demo-multiple-chip"
           multiple
-          value={expertise}
+          value={topics}
           onChange={handleChange}
-          input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
+          input={<OutlinedInput id="select-multiple-chip" label="Expertise" />}
           renderValue={(selected) => (
             <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
               {selected.map((value) => (
@@ -76,9 +67,56 @@ export default function MultipleSelectChip() {
             </MenuItem>
           ))}
         </Select>
-        <CallForActionButton />
+        <SubmitButton buttonName="Save" expertise={{topics}}  className="submitButton"/>
       </FormControl>
 
     </div>
   );
 }
+
+
+
+export function SingleSelectDropdown() {
+
+  const theme = useTheme();
+  const [topics, setTopics] = React.useState([]);
+
+  const handleChange = (event) => {
+    const {
+      target: { value },
+    } = event;
+    setTopics(
+      // On autofill we get a stringified value.
+      typeof value === 'string' ? value.split(',') : value,
+    );
+  };
+
+  return (
+    <div className="topicDropdown">
+
+      <FormControl sx={{ m: 1, minWidth: 80 }}>
+        <InputLabel id="demo-simple-select-autowidth-label">Topic</InputLabel>
+        <Select
+          labelId="demo-simple-select-autowidth-label"
+          id="demo-simple-select-autowidth"
+          value={topics}
+          onChange={handleChange}
+          autoWidth
+          label="Topic"
+        >
+          {courses.map((course) => (
+            <MenuItem
+              key={course.id}
+              value={course.name}
+            >
+              {course.name}
+            </MenuItem>
+          ))}
+        </Select>
+        <SubmitButton buttonName="Find a mentor for me"  topic={topics}/>
+      </FormControl>
+
+    </div>
+  );
+}
+

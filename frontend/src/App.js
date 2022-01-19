@@ -2,12 +2,12 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-d
 import "./App.css";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
-import NavBar from "./components/NavBar";
+import ResponsiveAppBar from "./components/Navbar_bk";
 
 function App() {
 	return (
 		<Router>
-			<NavBar />
+			<ResponsiveAppBar />
 			<Routes>
 				<Route exact path="/" element={<Navigate from="/" to="/home" exact />} />
 				<Route exact path="/home" element={<Home />} />
