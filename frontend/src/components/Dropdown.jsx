@@ -7,7 +7,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Chip from '@mui/material/Chip';
-import CallForActionButton from "./CallForActionButton";
+import CallForActionButton from "./Buttons";
 import courses from "../data/courses";
 import Axios from 'axios';
 
