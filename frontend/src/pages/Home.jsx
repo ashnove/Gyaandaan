@@ -1,12 +1,14 @@
 import React from 'react';
 
-import {SingleSelectDropdown} from "../components/Dropdown"
+
+import Blogr from "../components/blogr/blogr"
 
 const Home = () => {
-  return <div>
-    Home
-    <SingleSelectDropdown />
-    </div>;
+  return (
+    <div>
+      <Blogr />
+    </div>
+  );
   
 };
 

@@ -40,8 +40,8 @@ export function MultipleSelectChip() {
 
   return (
     <div className="expertiseDropdown">
-      <FormControl sx={{ m: 1, width: 300 }}>
-        <InputLabel id="demo-multiple-chip-label">Expertise</InputLabel>
+      <FormControl sx={{ m: 1, width: 300 }} >
+        <InputLabel id="demo-multiple-chip-label">Edit Expertise</InputLabel>
         <Select
           labelId="demo-multiple-chip-label"
           id="demo-multiple-chip"
@@ -95,7 +95,7 @@ export function SingleSelectDropdown() {
   return (
     <div className="topicDropdown">
 
-      <FormControl sx={{ m: 1, minWidth: 80 }}>
+      <FormControl sx={{ m: 5, minWidth: 80, flexDirection: "row" }}>
         <InputLabel id="demo-simple-select-autowidth-label">Topic</InputLabel>
         <Select
           labelId="demo-simple-select-autowidth-label"
@@ -104,6 +104,7 @@ export function SingleSelectDropdown() {
           onChange={handleChange}
           autoWidth
           label="Topic"
+          style={{width: "100vh", backgroundColor: "white"}}
         >
           {courses.map((course) => (
             <MenuItem
@@ -114,7 +115,7 @@ export function SingleSelectDropdown() {
             </MenuItem>
           ))}
         </Select>
-        <SubmitButton buttonName="Find a mentor for me"  topic={topics}/>
+        <SubmitButton buttonName="GET MENTOR"  topic={topics}/>
       </FormControl>
 
     </div>

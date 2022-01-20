@@ -4,14 +4,14 @@
     box-sizing: border-box;
 }
 html {
+    color: white;
     font-family: "Montserrat", sans-serif;
 }
 body {
     background: #eee;
-    padding: 0 16px;
+    /* padding: 0 16px; */
 }
 header {
-    background-color: #dfe6e9;
     margin: auto -16px;
     padding: 16px 32px;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
@@ -19,4 +19,18 @@ header {
 
 header h1 {
     font-family: "Montserrat", sans-serif;
+}
+
+.expertiseDropdown{
+    text-align: center;
+    padding: 20px;
+    /* flex-direction: row !important; */
+}
+
+.profilediv{
+    float: right;
+    margin-right: 20px;
+}
+.topicDropdown {
+    flex-direction: row !important;
 }

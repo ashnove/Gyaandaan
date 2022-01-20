@@ -3,9 +3,7 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 
 const buttonStyles={
-  marginTop:"10px",
   width:"auto",
-  height:"50px"
 }
 
 export default function SubmitButton(props) {

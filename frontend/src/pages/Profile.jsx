@@ -1,14 +1,18 @@
 import React from 'react';
 
-import {MultipleSelectChip} from "../components/Dropdown"
+
+import ProfileCard from "../components/ProfileCard/ProfileCard"
+import Blogr from "../components/blogr/blogr"
 
 
 const Profile = () => {
-  return 
-  <div>
-    Profile
-    <MultipleSelectChip />
-  </div>;
-};
+  return (
+    <div>
+       {/* <Blogr /> */}
+      <ProfileCard />
+
+    </div>
+    );
+}
 
 export default Profile;

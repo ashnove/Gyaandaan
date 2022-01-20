@@ -5,14 +5,14 @@ import { LinkContainer } from "react-router-bootstrap";
 const NavBar = () => {
 	return (
 		<Row>
-			<Navbar fluid collapseOnSelect expand="lg" style={{ backgroundColor: "#FEF7F5" }}>
+			<Navbar fluid collapseOnSelect expand="lg" style={{ backgroundColor: "#2c3e50"}}>
 				<Container>
 					<LinkContainer to="/">
 						<Navbar.Brand>Gyandaan</Navbar.Brand>
 					</LinkContainer>
 					<Navbar.Toggle aria-controls="responsive-navbar-nav" />
 					<Navbar.Collapse id="responsive-navbar-nav">
-						<Nav className="me-auto">
+						<Nav className="me-auto bs-gray-100">
 							<LinkContainer to="/home">
 								<Nav.Link>Home</Nav.Link>
 							</LinkContainer>
