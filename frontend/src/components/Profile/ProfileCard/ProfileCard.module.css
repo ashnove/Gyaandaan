@@ -68,3 +68,10 @@
     margin-bottom: 0;
     margin-top: 0.5rem;
 }
+
+
+
+.CardBodyEdit{
+    background-color: rgb(179, 167, 167);
+    border-radius: 15px;
+}

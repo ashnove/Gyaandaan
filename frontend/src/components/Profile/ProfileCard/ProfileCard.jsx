@@ -2,7 +2,7 @@ import React from 'react';
 import {Card, Container, Row, Col} from "react-bootstrap";
 import classes from './ProfileCard.module.css'
 import NewTopicForm from '../NewTopicForm';
-
+import MultiselectDropDown from '../MultiselectDropdown';
 
 
 const ProfileCard = (props) => {
@@ -35,6 +35,8 @@ const ProfileCard = (props) => {
                                 <Card.Text className={classes.TextMuted}>Sessions</Card.Text>
                             </Col>
                         </Row>
+                        <br></br>
+                        <MultiselectDropDown />
 
                 <NewTopicForm />
 
