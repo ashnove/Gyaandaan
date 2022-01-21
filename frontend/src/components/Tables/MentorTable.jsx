@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { Table, Pagination } from 'rsuite';
 import TrendingTableData from '../../data/TrendingTableData';
 
-function TrendingTable() {
+function MentorTable() {
     const [loading, setLoading] = React.useState(false);
     const [limit, setLimit] = React.useState(10);
     const [page, setPage] = React.useState(1);
@@ -19,7 +19,7 @@ function TrendingTable() {
     });
   
     return (
-      <div style={{padding: "20px" }}>
+      <div style={{padding: "20px", height: "auto" }}>
         <Table height={420} data={data} loading={loading}>
           <Table.Column width={200} align="center" fixed>
             <Table.HeaderCell>#</Table.HeaderCell>
@@ -68,4 +68,4 @@ function TrendingTable() {
     );
   };
   
-export default TrendingTable;
+export default MentorTable;
