@@ -33,47 +33,25 @@ public class MatchingService {
         String studentUsername = matchRequest.getStudentUsername();
         String topicName = matchRequest.getTopicName();
 
-        // get the volunteer username jo free hai
         Long availableVolunteerId = volunteerRepository.getAvailableVolunteer(topicName);
-        logger.info("availableVolunteer:" + availableVolunteerId);
         Volunteer availableVolunteer = volunteerRepository.findVolunteerById(availableVolunteerId);
-        logger.info("Volunteer fetched: " + Objects.isNull(availableVolunteer));
         if(Objects.isNull(availableVolunteer)){
             return new MatchResponse(studentUsername, "UNAVAILABLE");
         }
-        // return new MatchResponse("test1", "test2");
+
         Long volunteerId = availableVolunteer.getVolunteerId();
-        String volunteerUsername = availableVolunteer.getVolunteerUsername();
-        
-        // delete old timestamp of vol
-        // volunteerStatusRepository.deleteByVolunteerId(volunteerId);
-        // try {
-        //     volunteerStatusRepository.deleteById(volunteerId);
-        // }
-        // catch(Exception e ){
-        //     logger.info("Not Deleted: " + e.getMessage());
-        // }
-        // set new timestamp of vol
-        // VolunteerStatus newVolunteerStatus = new VolunteerStatus();
-        // newVolunteerStatus.setVolunteerId(volunteerId);
-        // try {
-        //     volunteerStatusRepository.save(newVolunteerStatus);
-        // }
-        // catch(Exception e ){
-        //     logger.info("Not Saved: " + e.getMessage());
-        // }
-        // set vol availability
+        String volunteerUsername = availableVolunteer.getVolunteerUsername();     
         Date volunteerTimestamp = new Date();
         volunteerRepository.updateVolunteerTimestamp(volunteerTimestamp, volunteerId);
-        logger.info("Date Update: " + volunteerTimestamp);
+
         try {
-        volunteerRepository.setVolunteerUnavailable(volunteerId);
+            volunteerRepository.setVolunteerUnavailable(volunteerId);
         }
         catch(Exception e){
-            logger.warn("66,67: " + e.getMessage());
+            logger.warn("Problem with the update query to set Mentor unavailable");
         }
 
-        // return MatchResponse obj
+        logger.info("Student username = " + studentUsername + " and Mentor username = " + volunteerUsername + " is matched");
         MatchResponse matchResponse = new MatchResponse(studentUsername, volunteerUsername);
         return matchResponse;
     }

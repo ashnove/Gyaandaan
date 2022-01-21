@@ -12,7 +12,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface VolunteerRepository extends JpaRepository<Volunteer, Long>{
+public interface VolunteerRepository extends JpaRepository<Volunteer, Long> {
     String GET_VOLUNTEER_BY_NAME = "SELECT * FROM GYDNTABLE.volunteer WHERE volunteer_username = ?1";
     String GET_VOLUNTEER_BY_ID = "SELECT * FROM GYDNTABLE.volunteer WHERE volunteer_id = ?1";
     String GET_AVAILABLE_VOLUNTEER_BY_TOPICNAME = "SELECT volunteer_id FROM GYDNTABLE.topic t JOIN GYDNTABLE.volunteer WHERE topic_name = ?1 AND volunteer_is_available = 1 ORDER BY volunteer_timestamp DESC LIMIT 1";
