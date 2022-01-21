@@ -24,9 +24,6 @@ public class VolunteerService {
     @Autowired
     TopicRepository topicRepository;
 
-    @Autowired
-    VolunteerStatusRepository volunteerStatusRepository;
-
     Logger logger = LoggerFactory.getLogger(VolunteerService.class);
 
     public Volunteer saveVolunteerPrefService(Volunteer volunteer){
