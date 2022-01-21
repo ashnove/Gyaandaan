@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button, Divider } from "rsuite";
 import SingleDropDown from "../Dropdown/SingleDropDown";
 import TrendingTable from "../Tables/TrendingTable";
+import SessionPopUp from "../SessionPopUp/SessionPopUp";
 
 function Blogr(){
     const [open, setOpen] = useState(false);
@@ -18,7 +19,7 @@ function Blogr(){
           >
             Get Mentor
           </Button>
-          {/* <SessionPopUp open={open} handleOpen={handleOpen} handleClose={handleClose} /> */}
+          <SessionPopUp open={open} handleOpen={handleOpen} handleClose={handleClose} />
         </div>
         <div style={{ marginTop: "15vh"}}>
           <Divider className = {"text-white"}>Trending Topics</Divider>

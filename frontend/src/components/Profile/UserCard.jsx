@@ -12,7 +12,6 @@ const formstyle={
 export default function(){
     return(
         <div className={classes.UserCard}>
-            This is profile card
             <ProfileCard />
             {/* <MultiselectDropDown />
             <NewTopicForm style={formstyle}/> */}
