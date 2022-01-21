@@ -5,7 +5,7 @@ import { TagPicker } from 'rsuite';
 
 export default function MultiselectDropDown (){
   return (
-  <div>
+  <div style={{textAlign:"center"}}>
     <TagPicker data={DropDownData} groupBy="role" style={{ width: 300 }} />
   </div>
 );
