@@ -1,7 +1,6 @@
 import React from 'react';
 import {Card, Container, Row, Col} from "react-bootstrap";
 import classes from './ProfileCard.module.css'
-import {MultipleSelectChip} from "../Dropdown"
 import NewTopicForm from '../NewTopicForm';
 
 
@@ -40,7 +39,6 @@ const ProfileCard = () => {
                     </Card.Footer>
                 </Card>
 
-                <MultipleSelectChip />
                 <NewTopicForm />
 
             </Container>
