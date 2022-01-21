@@ -1,9 +1,11 @@
 package com.gydn.gyandaan.Entity;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -12,6 +14,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.PrePersist;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -22,11 +27,21 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long studentId;
-    private String username;
-    private String firstname;
-    private String lastname;
-    private Long contact;
-    private Boolean isAvailable;
+    private String studentUsername;
+    private String studentFirstname;
+    private String studentLastname;
+    private String studentEmail;
+    private Long studentContact;
+    private Boolean studentIsAvailable;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable = false)
+    private Date studentTimestamp;
+
+    @PrePersist
+    private void onCreate() {
+        studentTimestamp = new Date();
+    }
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "student_topics",
@@ -38,7 +53,15 @@ public class Student {
     public Student () {
 
     }
+    
+    public String getStudentEmail() {
+        return studentEmail;
+    }
 
+    public void setStudentEmail(String studentEmail) {
+        this.studentEmail = studentEmail;
+    }
+    
     public Long getStudentId() {
         return studentId;
     }
@@ -47,36 +70,52 @@ public class Student {
         this.studentId = studentId;
     }
 
-    public String getUsername() {
-        return username;
+    public String getStudentUsername() {
+        return studentUsername;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setStudentUsername(String studentUsername) {
+        this.studentUsername = studentUsername;
     }
 
-    public String getFirstname() {
-        return firstname;
+    public String getStudentFirstname() {
+        return studentFirstname;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public void setStudentFirstname(String studentFirstname) {
+        this.studentFirstname = studentFirstname;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getStudentLastname() {
+        return studentLastname;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
-    
-    public Long getContact() {
-        return contact;
+    public void setStudentLastname(String studentLastname) {
+        this.studentLastname = studentLastname;
     }
 
-    public void setContact(Long contact) {
-        this.contact = contact;
+    public Long getStudentContact() {
+        return studentContact;
+    }
+
+    public void setStudentContact(Long studentContact) {
+        this.studentContact = studentContact;
+    }
+
+    public Boolean getStudentIsAvailable() {
+        return studentIsAvailable;
+    }
+
+    public void setStudentIsAvailable(Boolean studentIsAvailable) {
+        this.studentIsAvailable = studentIsAvailable;
+    }
+
+    public Date getStudentTimestamp() {
+        return studentTimestamp;
+    }
+
+    public void setStudentTimestamp(Date studentTimestamp) {
+        this.studentTimestamp = studentTimestamp;
     }
 
     public Set<Topic> getTopics() {
@@ -87,18 +126,12 @@ public class Student {
         this.topics = topics;
     }
 
-    public Boolean getIsAvailable() {
-        return isAvailable;
-    }
-
-    public void setIsAvailable(Boolean isAvailable) {
-        this.isAvailable = isAvailable;
-    }
-
     @Override
     public String toString() {
-        return "Student [contact=" + contact + ", firstname=" + firstname + ", isAvailable=" + isAvailable
-                + ", lastname=" + lastname + ", studentId=" + studentId + ", topics=" + topics + ", username="
-                + username + "]";
+        return "Student [StudentContact=" + studentContact + ", studentFirstname=" + studentFirstname + ", studentId="
+                + studentId + ", studentIsAvailable=" + studentIsAvailable + ", studentLastname=" + studentLastname
+                + ", studentUsername=" + studentUsername + ", topics=" + topics + ", studentTimestamp="
+                + studentTimestamp + "]";
     }
+    
 }

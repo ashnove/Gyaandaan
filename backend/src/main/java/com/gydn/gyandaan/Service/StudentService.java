@@ -20,7 +20,7 @@ public class StudentService {
     TopicRepository topicRepository;
 
     public Student saveStudentPrefService(Student student){
-        Student getStudent = studentRepository.findStudentByName(student.getUsername());
+        Student getStudent = studentRepository.findStudentByName(student.getStudentUsername());
         student.getTopics().forEach( (topic) -> {
             Topic getTopic = topicRepository.findTopicByName(topic.getTopicName());
             getStudent.getTopics().add(getTopic);
