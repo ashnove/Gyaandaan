@@ -1,17 +1,19 @@
 import React from 'react';
 import {Card, Container, Row, Col} from "react-bootstrap";
 import classes from './ProfileCard.module.css'
-import {MultipleSelectChip} from "../Dropdown"
 import NewTopicForm from '../NewTopicForm';
 
 
-const ProfileCard = () => {
+
+const ProfileCard = (props) => {
+
+    const clsname = (props.forWhat == "Profile" ? classes.Profile : classes.Editform );
+    // console.log(clsname);
+
     return (
-        <div  className={classes.Background }>
-            <div className='profilediv'>
-            <Container className="py-5" >
+            <div className={clsname}>
                 <Card className={classes.ProfileCard + " mx-auto"} >
-                    <Card.Img className={classes.ProfileCardBackgroundImage} alt="Background Image" variant="top" src="" />
+                    <Card.Img className={classes.ProfileCardBackgroundImage} variant="top" src="https://images.unsplash.com/photo-1546587348-d12660c30c50?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1774&q=80" />
                     <Card.Img className={classes.ProfileCardImage} alt="User Image" src="https://media.istockphoto.com/photos/very-closeup-view-of-amazing-domestic-pet-in-mirror-round-fashion-is-picture-id1281804798"/>
                     <Card.Body className={"text-center " + classes.ProfileCardBody}>
                         <Card.Text className={classes.TextBold + " mb-0"}>
@@ -19,10 +21,6 @@ const ProfileCard = () => {
                         </Card.Text>
                         <Card.Text className={classes.TextMuted}>
                             London
-                        </Card.Text>
-
-                        <Card.Text className={classes.TextMuted}>
-                            Expertise:
                         </Card.Text>
 
                     </Card.Body>
@@ -37,17 +35,15 @@ const ProfileCard = () => {
                                 <Card.Text className={classes.TextMuted}>Sessions</Card.Text>
                             </Col>
                         </Row>
-                    </Card.Footer>
-                </Card>
 
-                <MultipleSelectChip />
                 <NewTopicForm />
 
-            </Container>
-            </div>
 
-            
-        </div>
+                    </Card.Footer>
+
+                </Card>
+            </div>
+          
     );
 };
 

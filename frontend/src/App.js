@@ -3,17 +3,22 @@ import "./App.css";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import NavBar from "./components/NavBar";
+import AppState from "./context/AppState";
 
 function App() {
 	return (
-		<Router>
-			<NavBar />
-			<Routes>
-				<Route exact path="/" element={<Navigate from="/" to="/home" exact />} />
-				<Route exact path="/home" element={<Home />} />
-				<Route exact path="/profile" element={<Profile />} />
-			</Routes>
-		</Router>
+		<>
+			<AppState>
+				<Router>
+					<NavBar />
+					<Routes>
+						<Route exact path="/" element={<Navigate from="/" to="/home" exact />} />
+						<Route exact path="/home" element={<Home />} />
+						<Route exact path="/profile" element={<Profile />} />
+					</Routes>
+				</Router>
+			</AppState>
+		</>
 	);
 }
 

@@ -1,18 +1,32 @@
-.Background {
-    height: 100vh;
-    width: 100vw;
-    background-color: hsl(185, 75%, 39%);
+
+
+
+.Editform{
+    float:right;
+    padding: 50px;
+    border: 50px solid black;
 }
+
+.Profile{
+    padding: 50px;
+    border: 50px solid rgb(138, 11, 11);
+}
+
+
+
 
 .ProfileCard {
     width: 350px;
     border-radius: 20px !important;
     border: none !important;
+    padding:none;
+    
 }
 
 .ProfileCardBody {
     padding-top: 3.5rem !important;
     padding-bottom: 2rem !important;
+    background-color: rgb(13, 108, 124);
 }
 
 .ProfileCardBackgroundImage {
@@ -35,7 +49,7 @@
 
 .TextMuted {
     font-weight: 400;
-    color: hsl(0, 0%, 59%);
+    color: hsl(0, 68%, 20%);
 }
 
 .TextBold {
@@ -45,7 +59,7 @@
 }
 
 .CardFooter {
-    background-color: white !important;
+    background-color: rgb(179, 167, 167) !important;
     border-bottom-left-radius: 15px  !important;
     border-bottom-right-radius: 15px !important;
 }

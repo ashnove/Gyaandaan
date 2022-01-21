@@ -1,16 +1,15 @@
 import React from 'react';
+import ProfileCard from '../components/Profile/ProfileCard/ProfileCard';
+import UserEdit from "../components/Profile/UserEdit"
 
-
-import ProfileCard from "../components/ProfileCard/ProfileCard"
-import Blogr from "../components/blogr/blogr"
-
-
+const temp={
+  display: "flex"
+}
 const Profile = () => {
   return (
-    <div>
-       {/* <Blogr /> */}
-      <ProfileCard />
-
+    <div style={temp}>
+      <ProfileCard forWhat="Profile"/>
+      <UserEdit />
     </div>
     );
 }
