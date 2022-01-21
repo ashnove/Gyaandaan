@@ -33,4 +33,5 @@ header h1 {
 }
 .topicDropdown {
     flex-direction: row !important;
+    justify-content: center; 
 }
