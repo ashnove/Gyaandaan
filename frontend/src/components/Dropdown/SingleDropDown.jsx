@@ -1,7 +1,7 @@
 import React from 'react';
 import { SelectPicker } from 'rsuite';
-import SpinnerIcon from '@rsuite/icons/legacy/Spinner';
-import SingleDropDownData from '../../data/SingleDropdownData'
+import DropDownData from '../../data/DropdownData'
+import { TagPicker } from 'rsuite';
 
 function compare(a, b) {
   let nameA = a.toUpperCase();
@@ -20,7 +20,7 @@ const SingleDropDown = () => {
     return (
       <React.Fragment>
           <SelectPicker
-            data={SingleDropDownData}
+            data={DropDownData}
             groupBy="role"
             sort={isGroup => {
               if (isGroup) {
@@ -40,3 +40,14 @@ const SingleDropDown = () => {
   }
 
 export default SingleDropDown;
+
+
+
+export function MultiselectDropDown (){
+  return (
+  <div>
+    <TagPicker data={DropDownData} groupBy="role" style={{ width: 300 }} />
+  </div>
+);
+}
+

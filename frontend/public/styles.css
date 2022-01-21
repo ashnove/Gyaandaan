@@ -8,8 +8,8 @@ html {
     font-family: "Montserrat", sans-serif;
 }
 body {
-    background: #eee;
-    /* padding: 0 16px; */
+    background: #e2d7d7;
+  
 }
 header {
     margin: auto -16px;
@@ -21,16 +21,3 @@ header h1 {
     font-family: "Montserrat", sans-serif;
 }
 
-.expertiseDropdown{
-    text-align: center;
-    padding: 20px;
-    /* flex-direction: row !important; */
-}
-
-.profilediv{
-    float: right;
-    margin-right: 20px;
-}
-.topicDropdown {
-    flex-direction: row !important;
-}
