@@ -1,6 +1,6 @@
 const studentService = {
 	studentUsername: "student1",
-	studentFirstname: "Aashish1",
+	studentFirstname: "Aashish",
 	studentEmail: "ashish@gmail.com",
 	studentLastname: "Illa",
 	studentIsAvailable: true,

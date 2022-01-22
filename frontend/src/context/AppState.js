@@ -14,8 +14,8 @@ const AppState = (props) => {
 
 	//STATES
 	const [topics, setTopics] = useState([]);
-	const [volunteers, setVolunteers] = useState(null);
-	const [students, setStudents] = useState(null);
+	const [volunteers, setVolunteers] = useState({});
+	const [students, setStudents] = useState([]);
 
 	//POST REQUESTS
 	const addTopic = async () => {

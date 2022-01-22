@@ -1,12 +1,11 @@
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import "./App.css";
 import Home from "./pages/Home";
+import Session from "./pages/Session/Session";
 import Profile from "./pages/Profile";
 import MentorsDasboard from "./pages/MentorsDasboard/MentorsDashboard"
-
 import NavBar from "./components/NavBar";
 import AppState from "./context/AppState";
-
 
 function App() {
 	return (

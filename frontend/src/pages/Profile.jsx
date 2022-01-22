@@ -8,7 +8,7 @@ const temp={
 const Profile = () => {
   return (
     <div style={temp}>
-      <ProfileCard forWhat="Profile"/>
+      <ProfileCard forWhat="Profile" displayType="student" />
       <UserEdit />
     </div>
     );

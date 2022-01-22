@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { Button, ButtonToolbar, Modal } from "rsuite";
 import PlaceholderParagraph from "rsuite/esm/Placeholder/PlaceholderParagraph";
-import UserCard from "../Profile/UserCard";
+import MeetInfo from "../SessionPopContent/MeetInfo";
+import StudentInfo from "../SessionPopContent/StudentInfo";
+import VolunInfo from "../SessionPopContent/VolunInfo";
+import Session from "../../pages/Session/Session";
 
 const SessionPopUp = ({ open, handleOpen, handleClose }) => {
 	return (
@@ -15,9 +18,9 @@ const SessionPopUp = ({ open, handleOpen, handleClose }) => {
 					<Modal.Title>Session</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-					{/* <PlaceholderParagraph /> */}
 
-					<UserCard />
+					<Session />
+
 				</Modal.Body>
 				<Modal.Footer>
 					<Button onClick={handleClose} appearance="primary">
