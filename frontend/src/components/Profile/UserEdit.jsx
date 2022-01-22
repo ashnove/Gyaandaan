@@ -11,9 +11,9 @@ const EditFormCard = (props) => {
 
     const clsname =classes.Editform;
     return (
-            <div className={clsname} style={{float: "left"}}>
+            <div className={clsname} /*style={{float: "left"}}*/>
                 <Card className={classes.ProfileCard + " mx-auto"}  >
-                    <Card.Body className={classes.CardBodyEdit} > <Editform /> </Card.Body>
+                    <Card.Body className={classes.CardBodyEdit} style={{width: "200%", backgroundColor: "#ecf0f1"}} > <Editform /> </Card.Body>
 
                 </Card>
             </div>
