@@ -5,10 +5,11 @@ import NewTopicForm from '../NewTopicForm';
 import MultiselectDropDown from '../MultiselectDropdown';
 
 
+
+
 const ProfileCard = (props) => {
 
     const clsname = (props.forWhat == "Profile" ? classes.Profile : classes.Editform );
-    // console.log(clsname);
 
     // https://images.unsplash.com/photo-1546587348-d12660c30c50?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1774&q=80
     // ./images/random-grey-variations
@@ -54,3 +55,8 @@ const ProfileCard = (props) => {
 };
 
 export default ProfileCard;
+
+
+
+
+
