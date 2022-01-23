@@ -13,8 +13,6 @@ export default function(){
     return(
         <div className={classes.UserCard}>
             <ProfileCard />
-            {/* <MultiselectDropDown />
-            <NewTopicForm style={formstyle}/> */}
         </div>
     );
 }

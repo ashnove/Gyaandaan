@@ -11,9 +11,13 @@ const EditFormCard = (props) => {
 
     const clsname =classes.Editform;
     return (
-            <div className={clsname} /*style={{float: "left"}}*/>
+            <div className={clsname} >
                 <Card className={classes.ProfileCard + " mx-auto"}  >
-                    <Card.Body className={classes.CardBodyEdit} style={{width: "200%", backgroundColor: "#ecf0f1"}} > <Editform /> </Card.Body>
+                    <Card.Body className={classes.CardBodyEdit} style={{width: "auto", backgroundColor: "#ecf0f1"}} > 
+                    <h4>Edit User Information</h4>
+                    <br />
+                    <Editform currentUser={props.currentUser}/> 
+                    </Card.Body>
 
                 </Card>
             </div>
@@ -23,15 +27,30 @@ const EditFormCard = (props) => {
 
 export default EditFormCard;
 
-function Editform (){
+function Editform (props){
+
+  const {
+    username,
+    firstname,
+    email,
+    lastname,
+    contact,
+    isAvailable,
+    sessions,
+    type,
+    org,
+    edu
+} = props.currentUser;
 
   const [userData, setUserData] = useState({
-    fname: "",
-    lname: "",
-    email: "",
-    org: "",
-    edu: ""
+    fname: firstname,
+    lname: lastname,
+    email: email,
+    org: org,
+    edu: edu
   });
+
+  console.log(userData.org);
 
   function handleSubmit() {
 
