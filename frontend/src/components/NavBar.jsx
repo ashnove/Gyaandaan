@@ -1,41 +1,53 @@
-import React, {useState} from 'react';
-import Button from "@mui/material/Button";
-import LogoutIcon from '@mui/icons-material/Logout';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-
-import SportsMartialArtsIcon from '@mui/icons-material/SportsMartialArts';
-
+import { Navbar, Nav, Dropdown } from "rsuite";
 import { Link } from "react-router-dom";
+import userData from "../data/userData"
 
+const NavBar = () => {
 
-function NavBar(props){
+	let status, color;
 
-    const [user, setUser] = useState("Ashutosh");
+	if(userData.isAvailable)
+	{	status="Online";
+		color="green";
+	}
+	else{
+		status="Offline";
+		color="red";
+	}
 
-    return (
-        <header style={{ display: "flex", alignItems: "center" }}>
-            <SportsMartialArtsIcon/>
-            <h1 >Gyandaan</h1>
-            <Link to="/home" style={{ textDecoration: "none", marginLeft: "10px", marginTop: "5px"}}>
-                <Button key="home" sx={{color: "back", display: "block" }}>
-                    Home
-                </Button>
-			</Link>
-            <div style={{ textDecoration: "none", display: "flex", position: "absolute", right: "10px"}}>
-                <Link to="/profile" >
-                    <Button key="profile" sx={{color: "back", display: "block" }} style={{alignItems: "center", display: "flex"}}>
-                        <AccountCircleIcon />
-                        <p>{user}</p>
-                    </Button>
-                </Link>
-                <Link to="/logout">
-                    <Button key="logout" sx={{color: "back", display: "block" }}>
-                        <LogoutIcon />
-                    </Button>
-                </Link>
-            </div>
-            
-        </header>
-    );
-}
+	return (
+		<Navbar appearance="inverse" style={{backgroundColor: "#2c3e50"}}>
+			<Navbar.Brand style={{ padding: "16px" }}>
+				<Link
+					to="/"
+					style={{ fontWeight: "700", fontSize: "1rem", textDecoration: "none", color: "white" }}
+				>
+					Gyandaan
+				</Link>
+			</Navbar.Brand>
+			<Nav>
+				<Nav.Item>
+					<Link to="/" style={{ textDecoration: "none", color: "white" }}>
+						Home
+					</Link>
+				</Nav.Item>
+				<Nav.Item>
+					<Link to="/profile" style={{ textDecoration: "none", color: "white" }}>
+						Profile
+					</Link>
+				</Nav.Item>
+			</Nav>
+			<Nav pullRight>
+				<Dropdown title="Status">
+					<Dropdown.Item style={{color:color}}>{status}</Dropdown.Item>
+				</Dropdown>
+				<Nav.Item>
+					<Link to="/logout" style={{ textDecoration: "none", color: "white" }}>
+						Logout
+					</Link>
+				</Nav.Item>
+			</Nav>
+		</Navbar>
+	);
+};
 export default NavBar;

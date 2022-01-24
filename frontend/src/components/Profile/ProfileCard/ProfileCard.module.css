@@ -1,0 +1,74 @@
+
+
+
+.Editform{
+    padding: 50px;
+}
+
+.Profile{
+    padding: 50px;
+}
+
+
+
+
+.ProfileCard {
+    width: 350px;
+    border-radius: 20px !important;
+    border: none !important;
+    padding:none;
+
+}
+
+.ProfileCardBody {
+    padding-top: 3.5rem !important;
+    padding-bottom: 2rem !important;
+    background-color: #222f3e;
+}
+
+.ProfileCardBackgroundImage {
+    width: 350px;
+    height: 140px;
+    border-top-left-radius: 15px  !important;
+    border-top-right-radius: 15px !important;
+}
+
+.ProfileCardImage {
+    width: 96px !important;
+    height: 96px !important;
+    margin: auto;
+    position: absolute;
+    top: 84px;
+    left: 127px;
+    border: 5px white solid;
+    border-radius: 48px !important;
+}
+
+.TextMuted {
+    font-weight: 400;
+    color: #2c3e50;
+}
+
+.TextBold {
+    font-size: 18px;
+    font-weight: 700;
+
+}
+
+.CardFooter {
+    background-color: #ecf0f1 !important;
+    border-bottom-left-radius: 15px  !important;
+    border-bottom-right-radius: 15px !important;
+}
+
+.FooterP {
+    margin-bottom: 0;
+    margin-top: 0.5rem;
+}
+
+
+
+.CardBodyEdit{
+    background-color: rgb(179, 167, 167);
+    border-radius: 15px;
+}

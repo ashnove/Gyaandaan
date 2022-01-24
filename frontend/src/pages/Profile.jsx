@@ -1,15 +1,45 @@
-import React from "react"
-import {MultipleSelectChip} from "../components/Dropdown"
+import React from 'react';
+import { Container, Header, Content, Footer, Sidebar, Panel } from 'rsuite';
 
-function Profile(props)  {
-	return (
-		<div>
-			This is Profile Page.
+import ProfileCard from '../components/Profile/ProfileCard/ProfileCard';
+import UserEdit from "../components/Profile/UserEdit"
 
-			<MultipleSelectChip />
+import userData from "../data/userData"
 
-		</div>
-	)
+const temp={
+  width:"auto",
+  margin:"auto",
+  backgroundColor:"grey",
+
 }
 
-export default Profile
+const Profile = () => {
+  return (
+
+    <Container >
+        <Footer className="text-white">
+          <Panel style={{textAlign: "center"}}>
+              You have completed {userData.sessions} Sessions. 
+          </Panel>
+        </Footer>
+          
+          <Panel style={temp} >
+          <div class="container">
+            <div class="row">
+              <div class="col-sm">
+                <ProfileCard forWhat="Profile" currentUser={userData} />
+              </div>
+              <div class="col-sm">
+                <UserEdit  currentUser={userData} />
+              </div>
+            </div>
+          </div>
+
+          </Panel>
+
+    </Container>
+      
+    );
+}
+
+export default Profile;
