@@ -10,7 +10,6 @@ const temp={
   width:"auto",
   margin:"auto",
   backgroundColor:"grey",
-
 }
 
 const Profile = () => {

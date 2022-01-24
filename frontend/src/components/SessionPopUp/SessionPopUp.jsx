@@ -6,14 +6,21 @@ import StudentInfo from "../SessionPopContent/StudentInfo";
 import VolunInfo from "../SessionPopContent/VolunInfo";
 import Session from "../../pages/Session/Session";
 
+
+ 
+
+
 const SessionPopUp = ({ open, handleOpen, handleClose }) => {
+
 	return (
-		<div className="modal-container">
+
+		<div className="modal-container" >
+			
 			{/* <ButtonToolbar>
 				<Button onClick={handleOpen}> Open</Button>
 			</ButtonToolbar> */}
 
-			<Modal open={open} onClose={handleClose}>
+			<Modal open={open} onClose={handleClose}  >
 				<Modal.Header>
 					<Modal.Title>Session</Modal.Title>
 				</Modal.Header>
@@ -32,6 +39,7 @@ const SessionPopUp = ({ open, handleOpen, handleClose }) => {
 				</Modal.Footer>
 			</Modal>
 		</div>
+
 	);
 };
 

@@ -21,7 +21,7 @@ const SingleDropDown = () => {
       <React.Fragment>
           <SelectPicker
             data={DropDownData}
-            groupBy="role"
+            groupBy="category"
             sort={isGroup => {
               if (isGroup) {
                 return (a, b) => {
@@ -46,7 +46,7 @@ export default SingleDropDown;
 export function MultiselectDropDown (){
   return (
   <div>
-    <TagPicker data={DropDownData} groupBy="role" style={{ width: 300 }} />
+    <TagPicker data={DropDownData} groupBy="category" style={{ width: 300 }} />
   </div>
 );
 }

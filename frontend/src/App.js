@@ -8,7 +8,8 @@ import NavBar from "./components/NavBar";
 import AppState from "./context/AppState";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
-import MyFooter from "./components/MyFooter"
+import MyFooter from "./components/MyFooter";
+
 
 function App() {
 	return (
@@ -16,7 +17,6 @@ function App() {
 			<AppState>
 				<Router>
 					<NavBar />
-					
 					<Routes>
 						<Route exact path="/" element={<Navigate from="/" to="/login" exact />} />
 						<Route exact path="/login" element={<Login />} />

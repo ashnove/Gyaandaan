@@ -9,4 +9,5 @@ public class GyandaanApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(GyandaanApplication.class, args);
 	}
+	
 }

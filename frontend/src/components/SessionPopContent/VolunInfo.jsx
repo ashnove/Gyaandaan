@@ -2,6 +2,7 @@ import React, {useState,useContext} from 'react';
 import { Panel, PanelGroup, Badge, Button, Container, Header, Content, Footer, Sidebar } from 'rsuite';
 import AppContext from "../../context/AppContext"
 import volunteerService from '../../data/volunteerService';
+import { Loader } from 'rsuite';
 
 const VolunInfo = (props) => {
   
@@ -48,7 +49,8 @@ const VolunInfo = (props) => {
   }
   else{
     toBedisplayed=<div>
-        <div style={{display: "flex"}}>
+
+        <div style={{display: "flex"}} >
               <div> {data.volunteerFirstname + ' ' + data.volunteerLastname} </div>
               <div style={{float: "right"}}>
                 <Badge color="red">Waiting for response</Badge>
@@ -56,15 +58,18 @@ const VolunInfo = (props) => {
 
               <br />
               This will only be shown to student
-            </div>
+        </div>
             <p> {data.volunteerUsername} </p>
     </div>;
   }
 
   return (
     <div>
-        <Panel header="Assigned Mentor" bordered>
+        
+        <Panel header="Assigned Mentor" bordered >
+
           {toBedisplayed}
+
         </Panel>
     </div>
   );
