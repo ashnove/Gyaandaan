@@ -28,10 +28,11 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long studentId;
     private String studentUsername;
+    private String studentPassword;
     private String studentFirstname;
     private String studentLastname;
     private String studentEmail;
-    private Long studentContact;
+    private String token;
     private Boolean studentIsAvailable;
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -54,6 +55,13 @@ public class Student {
 
     }
     
+    public Student(String studentUsername, String studentPassword, String studentEmail, String token) {
+        this.studentUsername = studentUsername;
+        this.studentPassword = studentPassword;
+        this.studentEmail = studentEmail;
+        this.token = token;
+    }
+
     public String getStudentEmail() {
         return studentEmail;
     }
@@ -62,6 +70,22 @@ public class Student {
         this.studentEmail = studentEmail;
     }
     
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+    
+    public String getStudentPassword() {
+        return studentPassword;
+    }
+
+    public void setStudentPassword(String studentPassword) {
+        this.studentPassword = studentPassword;
+    }
+
     public Long getStudentId() {
         return studentId;
     }
@@ -94,14 +118,6 @@ public class Student {
         this.studentLastname = studentLastname;
     }
 
-    public Long getStudentContact() {
-        return studentContact;
-    }
-
-    public void setStudentContact(Long studentContact) {
-        this.studentContact = studentContact;
-    }
-
     public Boolean getStudentIsAvailable() {
         return studentIsAvailable;
     }
@@ -128,10 +144,10 @@ public class Student {
 
     @Override
     public String toString() {
-        return "Student [StudentContact=" + studentContact + ", studentFirstname=" + studentFirstname + ", studentId="
+        return "Student [studentEmail=" + studentEmail + ", studentFirstname=" + studentFirstname + ", studentId="
                 + studentId + ", studentIsAvailable=" + studentIsAvailable + ", studentLastname=" + studentLastname
-                + ", studentUsername=" + studentUsername + ", topics=" + topics + ", studentTimestamp="
-                + studentTimestamp + "]";
+                + ", studentTimestamp=" + studentTimestamp + ", studentUsername=" + studentUsername + ", token=" + token
+                + ", topics=" + topics + "]";
     }
     
 }

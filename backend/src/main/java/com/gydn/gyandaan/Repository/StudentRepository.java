@@ -12,4 +12,5 @@ public interface StudentRepository extends JpaRepository<Student, Long>{
 
     @Query(value = GET_STUDENT_BY_NAME, nativeQuery = true)
     public Student findStudentByName(String username);
+    public Student findByToken(String token);
 }

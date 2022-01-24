@@ -1,6 +1,8 @@
 package com.gydn.gyandaan.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.gydn.gyandaan.Entity.Student;
 import com.gydn.gyandaan.Entity.Topic;
@@ -42,4 +44,11 @@ public class StudentService {
     public List<Student> getAllStudentsService(){
         return studentRepository.findAll();
     }
+
+    public Map<String, Object> export(Student user) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("username", user.getStudentUsername());
+        return map;
+    }
+
 }
