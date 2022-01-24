@@ -3,13 +3,13 @@ package com.gydn.gyandaan.Service;
 import java.util.Date;
 import java.util.Objects;
 
+import com.gydn.gyandaan.DTO.EndSessionRequest;
+import com.gydn.gyandaan.DTO.MatchRequest;
+import com.gydn.gyandaan.DTO.MatchResponse;
 import com.gydn.gyandaan.Entity.Volunteer;
 import com.gydn.gyandaan.Entity.VolunteerStatus;
 import com.gydn.gyandaan.Repository.VolunteerRepository;
 import com.gydn.gyandaan.Repository.VolunteerStatusRepository;
-import com.gydn.gyandaan.Utility.EndSessionRequest;
-import com.gydn.gyandaan.Utility.MatchRequest;
-import com.gydn.gyandaan.Utility.MatchResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

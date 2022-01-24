@@ -1,9 +1,9 @@
 package com.gydn.gyandaan.Controller;
 
+import com.gydn.gyandaan.DTO.EndSessionRequest;
+import com.gydn.gyandaan.DTO.MatchRequest;
+import com.gydn.gyandaan.DTO.MatchResponse;
 import com.gydn.gyandaan.Service.MatchingService;
-import com.gydn.gyandaan.Utility.EndSessionRequest;
-import com.gydn.gyandaan.Utility.MatchRequest;
-import com.gydn.gyandaan.Utility.MatchResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

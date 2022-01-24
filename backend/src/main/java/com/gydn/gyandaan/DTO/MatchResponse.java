@@ -1,4 +1,4 @@
-package com.gydn.gyandaan.Utility;
+package com.gydn.gyandaan.DTO;
 
 public class MatchResponse {
     private String studentUsername;
