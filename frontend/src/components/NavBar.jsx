@@ -1,7 +1,20 @@
 import { Navbar, Nav, Dropdown } from "rsuite";
 import { Link } from "react-router-dom";
+import userData from "../data/userData"
 
 const NavBar = () => {
+
+	let status, color;
+
+	if(userData.isAvailable)
+	{	status="Online";
+		color="green";
+	}
+	else{
+		status="Offline";
+		color="red";
+	}
+
 	return (
 		<Navbar appearance="inverse" style={{backgroundColor: "#2c3e50"}}>
 			<Navbar.Brand style={{ padding: "16px" }}>
@@ -26,8 +39,7 @@ const NavBar = () => {
 			</Nav>
 			<Nav pullRight>
 				<Dropdown title="Status">
-					<Dropdown.Item>Online</Dropdown.Item>
-					<Dropdown.Item>Offline</Dropdown.Item>
+					<Dropdown.Item style={{color:color}}>{status}</Dropdown.Item>
 				</Dropdown>
 				<Nav.Item>
 					<Link to="/logout" style={{ textDecoration: "none", color: "white" }}>

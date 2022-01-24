@@ -9,10 +9,9 @@ import userData from "../data/userData"
 const temp={
   width:"auto",
   margin:"auto",
-  backgroundColor:"red",
+  backgroundColor:"grey",
 
 }
-
 
 const Profile = () => {
   return (
