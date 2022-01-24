@@ -13,14 +13,12 @@ const SessionPopUp = ({ open, handleOpen, handleClose }) => {
 				<Button onClick={handleOpen}> Open</Button>
 			</ButtonToolbar> */}
 
-			<Modal open={open} onClose={handleClose}>
+			<Modal backdrop="static" open={open} onClose={handleClose}>
 				<Modal.Header>
 					<Modal.Title>Session</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-
 					<Session />
-
 				</Modal.Body>
 				<Modal.Footer>
 					<Button onClick={handleClose} appearance="primary">
