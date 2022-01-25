@@ -71,6 +71,7 @@ Messaging
 
 # FILE DIRECTORY TREE
 
+```
 frontend/
 ┣ public/
 ┃ ┣ ProfileCard/
@@ -86,16 +87,16 @@ frontend/
 ┃ ┗ styles.css
 ┣ src/
 ┃ ┣ components/
-┃ ┃ ┣ blogr/
+┃ ┃ ┣ Dropdown/
+┃ ┃ ┃ ┣ Dropdown.css
+┃ ┃ ┃ ┗ SingleDropDown.jsx
+┃ ┃ ┣ HomeContent/
 ┃ ┃ ┃ ┣ images/
 ┃ ┃ ┃ ┃ ┣ bg-pattern-intro-blue.svg
 ┃ ┃ ┃ ┃ ┣ bg-pattern-intro.svg
 ┃ ┃ ┃ ┃ ┗ concrete_wall.png
-┃ ┃ ┃ ┣ blogr.jsx
-┃ ┃ ┃ ┗ blogr.module.css
-┃ ┃ ┣ Dropdown/
-┃ ┃ ┃ ┣ Dropdown.css
-┃ ┃ ┃ ┗ SingleDropDown.jsx
+┃ ┃ ┃ ┣ blogr.module.css
+┃ ┃ ┃ ┗ HomeContent.jsx
 ┃ ┃ ┣ Profile/
 ┃ ┃ ┃ ┣ ProfileCard/
 ┃ ┃ ┃ ┃ ┣ images/
@@ -160,3 +161,4 @@ frontend/
 ┣ package-lock.json
 ┣ package.json
 ┗ README.md
+```
