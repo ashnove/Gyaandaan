@@ -132,9 +132,7 @@ const ProfileCard = (props) => {
 							<div className="col-sm">{selectStatusDropdown}</div>
 						</div>
 					</div>
-
 					<br />
-
 					{toBedisplayed}
 				</Card.Footer>
 			</Card>
