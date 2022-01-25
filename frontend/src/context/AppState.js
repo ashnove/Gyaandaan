@@ -16,11 +16,11 @@ const AppState = (props) => {
 	const [topics, setTopics] = useState([]);
 	const [volunteers, setVolunteers] = useState({});
 	const [students, setStudents] = useState([]);
-	const [forStudentMsg, setForStudentMsg] = useState('');
+	const [forStudentMsg, setForStudentMsg] = useState("");
 
 	//POST REQUESTS
-	const addTopic = async () => {
-		await axios.post(`${host}/addTopic`, topicsService);
+	const addTopic = async (props) => {
+		await axios.post(`${host}/addTopic`, props);
 	};
 	const addVolunteer = async () => {
 		await axios.post(`${host}/addVolunteer`, volunteerService);
@@ -34,8 +34,8 @@ const AppState = (props) => {
 	const saveVolunteerPref = async () => {
 		await axios.post(`${host}/saveVolunteerPref`, volunteerPrefService);
 	};
-	const startSession = async () => {
-		await axios.post(`${host}/startSession`, sessionService);
+	const startSession = async (props) => {
+		await axios.post(`${host}/startSession`, props);
 	};
 
 	//GET REQUESTS
@@ -73,7 +73,7 @@ const AppState = (props) => {
 				getVolunteers,
 				getStudents,
 				forStudentMsg,
-				setStudentMsg
+				setStudentMsg,
 			}}
 		>
 			{props.children}

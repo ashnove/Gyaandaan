@@ -6,13 +6,9 @@ import StudentInfo from "../SessionPopContent/StudentInfo";
 import VolunInfo from "../SessionPopContent/VolunInfo";
 import Session from "../../pages/Session/Session";
 
-
 const SessionPopUp = (props) => {
-
 	return (
-
-		<div className="modal-container" >
-			
+		<div className="modal-container">
 			{/* <ButtonToolbar>
 				<Button onClick={handleOpen}> Open</Button>
 			</ButtonToolbar> */}
@@ -22,7 +18,7 @@ const SessionPopUp = (props) => {
 					<Modal.Title>Session</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-					<Session sendMessage={props.sendMessage} />
+					<Session volunteer={props.volunteer} sendMessage={props.sendMessage} />
 				</Modal.Body>
 				<Modal.Footer>
 					<Button onClick={props.handleClose} appearance="primary">
@@ -34,7 +30,6 @@ const SessionPopUp = (props) => {
 				</Modal.Footer>
 			</Modal>
 		</div>
-
 	);
 };
 
