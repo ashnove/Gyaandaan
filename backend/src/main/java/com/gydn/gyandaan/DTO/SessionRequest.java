@@ -22,5 +22,4 @@ public class SessionRequest {
    private String content;
    private Date timestamp;
    private SessionRequestStatus status;
- 
 }

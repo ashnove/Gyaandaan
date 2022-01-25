@@ -45,9 +45,10 @@ public class StudentService {
         return studentRepository.findAll();
     }
 
-    public Map<String, Object> export(Student user) {
+    public Map<String, Object> export(Student user, String token) {
         Map<String, Object> map = new HashMap<String, Object>();
-        map.put("username", user.getStudentUsername());
+        map.put("success", true);
+        map.put("token", token);
         return map;
     }
 

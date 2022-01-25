@@ -10,16 +10,18 @@ import volunteerPrefService from "../data/volunteerPrefService";
 import sessionService from "../data/sessionService";
 
 const AppState = (props) => {
-	const host = "http://localhost:8080";
+	const host = "http://localhost:8080/gydn";
 
 	//STATES
 	const [topics, setTopics] = useState([]);
 	const [volunteers, setVolunteers] = useState({});
 	const [students, setStudents] = useState([]);
+	const [forStudentMsg, setForStudentMsg] = useState("");
+	const [meetLink, setMeetLink] = useState("");
 
 	//POST REQUESTS
-	const addTopic = async () => {
-		await axios.post(`${host}/addTopic`, topicsService);
+	const addTopic = async (props) => {
+		await axios.post(`${host}/addTopic`, props);
 	};
 	const addVolunteer = async () => {
 		await axios.post(`${host}/addVolunteer`, volunteerService);
@@ -33,8 +35,8 @@ const AppState = (props) => {
 	const saveVolunteerPref = async () => {
 		await axios.post(`${host}/saveVolunteerPref`, volunteerPrefService);
 	};
-	const startSession = async () => {
-		await axios.post(`${host}/startSession`, sessionService);
+	const startSession = async (props) => {
+		await axios.post(`${host}/startSession`, props);
 	};
 
 	//GET REQUESTS
@@ -49,6 +51,15 @@ const AppState = (props) => {
 	const getStudents = async () => {
 		const json = await axios.get(`${host}/students`);
 		setStudents(Array.from(json.data));
+	};
+	const getMeeting = async () => {
+		const json = await axios.get(`${host}/meeting`);
+		setMeetLink(json.data.joinUrl);
+	};
+
+	//States
+	const setStudentMsg = (msg) => {
+		setForStudentMsg(msg);
 	};
 
 	return (
@@ -66,6 +77,9 @@ const AppState = (props) => {
 				getTopics,
 				getVolunteers,
 				getStudents,
+				getMeeting,
+				forStudentMsg,
+				setStudentMsg,
 			}}
 		>
 			{props.children}

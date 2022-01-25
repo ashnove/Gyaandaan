@@ -1,22 +1,33 @@
 import { Navbar, Nav, Dropdown } from "rsuite";
-import { Link } from "react-router-dom";
-import userData from "../data/userData"
+import { Link, useNavigate } from "react-router-dom";
+import userData from "../data/userData";
+import { useLocation } from "react-router-dom";
 
 const NavBar = () => {
+	const history = useNavigate();
 
 	let status, color;
 
-	if(userData.isAvailable)
-	{	status="Online";
-		color="green";
-	}
-	else{
-		status="Offline";
-		color="red";
+	if (userData.isAvailable) {
+		status = "Online";
+		color = "green";
+	} else {
+		status = "Offline";
+		color = "red";
 	}
 
+	const Logout = () => {
+		localStorage.clear();
+		console.log("logout");
+		history("/login");
+	};
+
+	const isAuthenticated = localStorage.getItem("isAuthenticated");
+
+	const location = useLocation();
+
 	return (
-		<Navbar appearance="inverse" style={{backgroundColor: "#2c3e50"}}>
+		<Navbar appearance="inverse" style={{ backgroundColor: "#2c3e50" }}>
 			<Navbar.Brand style={{ padding: "16px" }}>
 				<Link
 					to="/"
@@ -25,9 +36,9 @@ const NavBar = () => {
 					Gyandaan
 				</Link>
 			</Navbar.Brand>
-			<Nav>
+			<Nav style={{ display: isAuthenticated ? "block" : "none" }}>
 				<Nav.Item>
-					<Link to="/" style={{ textDecoration: "none", color: "white" }}>
+					<Link to="/home" style={{ textDecoration: "none", color: "white" }}>
 						Home
 					</Link>
 				</Nav.Item>
@@ -37,14 +48,22 @@ const NavBar = () => {
 					</Link>
 				</Nav.Item>
 			</Nav>
-			<Nav pullRight>
-				<Dropdown title="Status">
-					<Dropdown.Item style={{color:color}}>{status}</Dropdown.Item>
-				</Dropdown>
+			<Nav pullRight style={{ display: isAuthenticated ? "block" : "none" }}>
+				<Nav.Item onClick={Logout}>Logout</Nav.Item>
+			</Nav>
+			<Nav pullRight style={{ display: isAuthenticated ? "none" : "block" }}>
 				<Nav.Item>
-					<Link to="/logout" style={{ textDecoration: "none", color: "white" }}>
-						Logout
-					</Link>
+					<>
+						{location.pathname === "/login" ? (
+							<Link to="/register" style={{ textDecoration: "none", color: "white" }}>
+								Signup
+							</Link>
+						) : (
+							<Link to="/login" style={{ textDecoration: "none", color: "white" }}>
+								Login
+							</Link>
+						)}
+					</>
 				</Nav.Item>
 			</Nav>
 		</Navbar>

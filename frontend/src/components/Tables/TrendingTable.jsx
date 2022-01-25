@@ -29,14 +29,20 @@ function TrendingTable() {
   const ButtonCell = ({ rowData, dataKey, ...props }) => (
     <Table.Cell {...props} style={{ padding: 5 }}>
       <div style={ButtonCellStyle}>
-        <Button onClick={() => history('/mentors')}>View Mentor</Button>
+        <Button onClick={() => history('/mentors')}>View Mentors</Button>
       </div>
     </Table.Cell>
   );
 
+  const trendingTablePanelStyle={
+    backgroundColor:'#ecf0f1', 
+    margin: "auto",
+    width: '80%'
+  };
+
   return (
-    <div style={{ padding: "20px", textAlign: '-webkit-center'}}>
-      <Panel header="#Trending Topics" bordered bodyFill style={{backgroundColor:'#ecf0f1', width: '80%'}}>
+    <div style={{ padding: "20px"}}>
+      <Panel header="#Trending Topics" bordered bodyFill style={trendingTablePanelStyle}>
         <Table height={420} data={data} loading={loading}>
           <Table.Column width={200} align="center" flexGrow={1} >
             <Table.HeaderCell>#</Table.HeaderCell>
@@ -62,7 +68,7 @@ function TrendingTable() {
             <ButtonCell />
           </Table.Column>
         </Table>
-        <div style={{ padding: 20 }}>
+        {/* <div style={{ padding: 20 }}>
           <Pagination
             prev
             next
@@ -80,7 +86,7 @@ function TrendingTable() {
             onChangePage={setPage}
             onChangeLimit={handleChangeLimit}
           />
-        </div>
+        </div> */}
       </Panel>
     </div>
   );
