@@ -17,6 +17,7 @@ const AppState = (props) => {
 	const [volunteers, setVolunteers] = useState({});
 	const [students, setStudents] = useState([]);
 	const [forStudentMsg, setForStudentMsg] = useState("");
+	const [meetLink, setMeetLink] = useState("");
 
 	//POST REQUESTS
 	const addTopic = async (props) => {
@@ -51,6 +52,10 @@ const AppState = (props) => {
 		const json = await axios.get(`${host}/students`);
 		setStudents(Array.from(json.data));
 	};
+	const getMeeting = async () => {
+		const json = await axios.get(`${host}/meeting`);
+		setMeetLink(json.data.joinUrl);
+	};
 
 	//States
 	const setStudentMsg = (msg) => {
@@ -72,6 +77,7 @@ const AppState = (props) => {
 				getTopics,
 				getVolunteers,
 				getStudents,
+				getMeeting,
 				forStudentMsg,
 				setStudentMsg,
 			}}
