@@ -20,7 +20,7 @@ const VolunInfo = (props) => {
 	const [volunteerName, setvolunteerName] = useState(props.name);
 
 	const context = useContext(AppContext);
-	const { forStudentMsg } = context;
+	const { forStudentMsg, getMeeting, meetLink } = context;
 	const data = volunteerService;
 	const ACCEPTED = "ACCEPTED";
 	const REJECTED = "REJECTED";
@@ -29,6 +29,12 @@ const VolunInfo = (props) => {
 
 	const isVolun = displayingFor == "student" ? false : true;
 	const panelHeader = displayingFor == "student" ? "Assigned Mentor" : "";
+
+	const SessionMeetGeneration = () => {
+		getMeeting();
+		const meetURL = meetLink;
+		props.sendMessage(ACCEPTED + " " + meetURL);
+	};
 
 	let toBedisplayed;
 
@@ -39,11 +45,7 @@ const VolunInfo = (props) => {
 					<Content> {data.volunteerFirstname + " " + data.volunteerLastname}</Content>
 					<Sidebar>
 						<div style={{ float: "right", display: "flex", columnGap: "2px" }}>
-							<Button
-								color="green"
-								appearance="primary"
-								onClick={() => props.sendMessage(ACCEPTED)}
-							>
+							<Button color="green" appearance="primary" onClick={SessionMeetGeneration}>
 								Accept
 							</Button>
 							<Button color="red" appearance="primary" onClick={() => props.sendMessage(REJECTED)}>
@@ -74,7 +76,6 @@ const VolunInfo = (props) => {
 						</div>
 					)}
 					<br />
-					This will only be shown to student
 				</div>
 				<p> {data.volunteerUsername} </p>
 			</div>

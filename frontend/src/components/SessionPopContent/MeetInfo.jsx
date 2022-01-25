@@ -1,32 +1,27 @@
-import React from 'react';
-import { Panel, PanelGroup } from 'rsuite';
+import React from "react";
+import { useContext } from "react";
+import { Panel, PanelGroup } from "rsuite";
+import AppContext from "../../context/AppContext";
 
 const MeetInfo = (props) => {
+	const context = useContext(AppContext);
+	const { meetLink } = context;
 
-  const displayingFor = props.displayType;
+	const displayingFor = props.displayType;
 
-  const displayForStudent = 
-  <Panel header="Meeting Information" bordered> 
-    <a href="#"> Your meet link</a> 
-    This will only be shown to student
-  </Panel>;
-  
-  const displayForVolunteer = 
-  <Panel header="Meeting Information" bordered> 
-    <a href="#"> Your meet link</a> 
-    This will only be shown to volunteer
-  </Panel>;
+	const displayForStudent = (
+		<Panel header="Meeting Information" bordered>
+			<a href={meetLink}> Join ZOOM Meeting</a>
+		</Panel>
+	);
 
-  return (
-    <div>
-      { displayingFor == 'student' 
-      ? displayForStudent
-      : displayForVolunteer}
-    </div>
-  );
-  
+	const displayForVolunteer = (
+		<Panel header="Meeting Information" bordered>
+			<a href={meetLink}> Join ZOOM Meeting</a>
+		</Panel>
+	);
+
+	return <div>{displayingFor == "student" ? displayForStudent : displayForVolunteer}</div>;
 };
 
 export default MeetInfo;
-
-
