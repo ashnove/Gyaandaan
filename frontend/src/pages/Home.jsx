@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Blogr from "../components/blogr/blogr"
+import HomeContent from "../components/HomeContent/HomeContent"
 import { Loader } from 'rsuite';
 
 
@@ -58,7 +58,7 @@ const Home = () => {
   return (
     <div>
       <div style={{display: loading ? "block" : "none"}}>{instance} </div>
-      <div style={{display: loading ? "none" : "block"}}><Blogr/></div>
+      <div style={{display: loading ? "none" : "block"}}><HomeContent/></div>
       {/* style={{display: loading ? "none" : "block"}};  */}
     </div>
   );
