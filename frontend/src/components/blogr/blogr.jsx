@@ -21,7 +21,7 @@ function Blogr(){
           </Button>
           <SessionPopUp open={open} handleOpen={handleOpen} handleClose={handleClose} />
         </div>
-        <div style={{ marginTop: "15vh"}}>
+        <div style={{ marginTop: "15vh", textAlign: "center"}}>
           <Divider className = {"text-white"}>Trending Topics</Divider>
           <TrendingTable/>
         </div>
