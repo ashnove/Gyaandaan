@@ -57,6 +57,16 @@ function Editform (props){
     // userData me sahise data aarha hai, in the above format.
     // yahase axios use krke req bhejna padega
 
+    fetch('./profile', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userData)}
+    );
+
+
   }
 
   function clearstate(){
@@ -99,7 +109,7 @@ function Editform (props){
 
       <Form.Group>
         <ButtonToolbar>
-          <Button appearance="primary" type="submit" onClick={handleSubmit} >
+          <Button appearance="primary" type="submit" formMethod='post' formAction='./saveTopic'>
             Submit
           </Button>
           <Button appearance="default" onClick={clearstate} >Cancel</Button>

@@ -43,24 +43,24 @@ public class AuthService {
         headers.set("Token", user.getToken());
         headers.set("Access-Control-Expose-Headers", "Token");
 
-        return ResponseEntity.ok().headers(headers).body(studentService.export(user));
+        return ResponseEntity.ok().headers(headers).body(studentService.export(user, user.getToken()));
     }
 
-    public ResponseEntity<?> autoLogin() {
+    // public ResponseEntity<?> autoLogin() {
         
-        if(authService.currUser == null)
-            return ResponseEntity.status(401).body(null);
+    //     if(authService.currUser == null)
+    //         return ResponseEntity.status(401).body(null);
 
-        return ResponseEntity.ok().body(studentService.export(authService.currUser));
-    }
+    //     return ResponseEntity.ok().body(studentService.export(authService.currUser));
+    // }
 
-    public ResponseEntity<?> logout() {
+    // public ResponseEntity<?> logout() {
         
-        authService.currUser.setToken(null);
-        studentRepository.save(authService.currUser);
-        authService.currUser = null;
-        return ResponseEntity.ok().body(true);
-    }
+    //     authService.currUser.setToken(null);
+    //     studentRepository.save(authService.currUser);
+    //     authService.currUser = null;
+    //     return ResponseEntity.ok().body(true);
+    // }
 
     public ResponseEntity<?> register(String username, String password, String email) {
 
@@ -72,7 +72,7 @@ public class AuthService {
         headers.set("Token", token);
         headers.set("Access-Control-Expose-Headers", "Token");
         
-        return ResponseEntity.ok().headers(headers).body(studentService.export(newUser));
+        return ResponseEntity.ok().headers(headers).body(studentService.export(newUser, token));
     }
     
     public String generateNewToken() {

@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping
+@RequestMapping("/gydn")
 @CrossOrigin(origins = "*")
 public class VolunteerController {
     @Autowired

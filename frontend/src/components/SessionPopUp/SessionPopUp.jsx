@@ -7,7 +7,7 @@ import VolunInfo from "../SessionPopContent/VolunInfo";
 import Session from "../../pages/Session/Session";
 
 
-const SessionPopUp = ({ open, handleOpen, handleClose }) => {
+const SessionPopUp = (props) => {
 
 	return (
 
@@ -17,18 +17,18 @@ const SessionPopUp = ({ open, handleOpen, handleClose }) => {
 				<Button onClick={handleOpen}> Open</Button>
 			</ButtonToolbar> */}
 
-			<Modal backdrop="static" open={open} onClose={handleClose}>
+			<Modal backdrop="static" open={props.open} onClose={props.handleClose}>
 				<Modal.Header>
 					<Modal.Title>Session</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-					<Session />
+					<Session sendMessage={props.sendMessage} />
 				</Modal.Body>
 				<Modal.Footer>
-					<Button onClick={handleClose} appearance="primary">
+					<Button onClick={props.handleClose} appearance="primary">
 						Ok
 					</Button>
-					<Button onClick={handleClose} appearance="subtle">
+					<Button onClick={props.handleClose} appearance="subtle">
 						Cancel
 					</Button>
 				</Modal.Footer>

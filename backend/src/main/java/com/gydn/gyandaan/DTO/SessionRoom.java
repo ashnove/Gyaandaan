@@ -22,5 +22,4 @@ public class SessionRoom {
     private String sessionId;
     private String senderId;
     private String recipientId;
-  
 }

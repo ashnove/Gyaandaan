@@ -7,19 +7,28 @@ const sessionStyle={
     flexDirection: "column"
 };
 
-const Session = () => {
+const loggedInUser = {
+  id: "1",
+  username: "ashutosh",
+  name: "Ashutosh",
+  type: "student"
+};
 
-  const displayType = "volunteer";
+const Session = (props) => {
+
+  const displayType =  'volunteer';
   return (
     <div style={sessionStyle}>
       
       <StudentInfo
           name = "Ashutosh"
           displayType = {displayType}
+          sendMessage = {props.sendMessage}
       />
       <VolunInfo 
           name = "Onkar"
           displayType = {displayType}
+          sendMessage = {props.sendMessage}
       />
       <MeetInfo 
           displayType = {displayType}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Container, Schema, Content, Footer, Message, FlexboxGrid, Panel, Form, ButtonToolbar, Button } from 'rsuite';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -38,33 +38,27 @@ const Login = () => {
   }
 
   const handleSubmit = async (e) => {
-    // e.preventDefault();
+    e.preventDefault();
 
-    // const res = await axios.post("http://localhost:5000/api/login", {
-    //   username: formValue.username,
-    //   password: formValue.password,
-    // });
+    const res = await axios.post("http://localhost:8080/gydn/login", {
+      username: formValue.username,
+      password: formValue.password,
+    });
 
-    // setFormValue({ username: "", password: "" });
+    setFormValue({ username: "", password: "" });
 
-    // if (res.data.success) {
-    //   localStorage.setItem("token", res.data.token)
-    //   localStorage.setItem("isAuthenticated", true)
-    //   history("/home")
-    // } else {
-    //   setFormHeader(
-    //     <div >
-    //       <Message showIcon type="error"> Username or Password is invalid </Message>
-    //       <h3>Login</h3>
-    //     </div>
-    //   );
-    // }
-
-    // const isAuthenticated = localStorage.getItem("isAuthenticated")
-    // useEffect(() => {
-    //   if (isAuthenticated) history("/home")
-    //   // eslint-disable-next-line
-    // }, [])
+    if (res.data.success) {
+      localStorage.setItem("token", res.data.token)
+      localStorage.setItem("isAuthenticated", true)
+      history("/home")
+    } else {
+      setFormHeader(
+        <div >
+          <Message showIcon type="error"> Username or Password is invalid </Message>
+          <h3>Login</h3>
+        </div>
+      );
+    }
 
     if (!formRef.current.check()) {
       console.error('Form Error');
@@ -83,6 +77,13 @@ const Login = () => {
       );
     }
   };
+
+  const isAuthenticated = localStorage.getItem("isAuthenticated")
+    useEffect(() => {
+      if (isAuthenticated) history("/home")
+      // eslint-disable-next-line
+    }, []);
+
   return (
     <Container>
       <Content style={{ marginTop: '20vh' }}>

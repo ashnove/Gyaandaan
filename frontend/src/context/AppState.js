@@ -10,12 +10,13 @@ import volunteerPrefService from "../data/volunteerPrefService";
 import sessionService from "../data/sessionService";
 
 const AppState = (props) => {
-	const host = "http://localhost:8080";
+	const host = "http://localhost:8080/gydn";
 
 	//STATES
 	const [topics, setTopics] = useState([]);
 	const [volunteers, setVolunteers] = useState({});
 	const [students, setStudents] = useState([]);
+	const [forStudentMsg, setForStudentMsg] = useState('');
 
 	//POST REQUESTS
 	const addTopic = async () => {
@@ -51,6 +52,11 @@ const AppState = (props) => {
 		setStudents(Array.from(json.data));
 	};
 
+	//States
+	const setStudentMsg = (msg) => {
+		setForStudentMsg(msg);
+	};
+
 	return (
 		<AppContext.Provider
 			value={{
@@ -66,6 +72,8 @@ const AppState = (props) => {
 				getTopics,
 				getVolunteers,
 				getStudents,
+				forStudentMsg,
+				setStudentMsg
 			}}
 		>
 			{props.children}

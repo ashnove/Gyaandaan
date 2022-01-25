@@ -17,10 +17,16 @@ function MentorTable() {
       const end = start + limit;
       return i >= start && i < end;
     });
+
+    const MentorTablePanelStyle={
+      backgroundColor:'#ecf0f1', 
+      margin: "auto",
+      width: '80%'
+    };
   
     return (
       <div style={{padding: "20px", height: "auto" }}>
-        <Panel header="#Mentors - [Topic]" bordered bodyFill style={{backgroundColor:'#ecf0f1', width: '80%'}}>
+        <Panel header="#Mentors - [Topic]" bordered bodyFill style={MentorTablePanelStyle}>
           <Table height={420} data={data} loading={loading}>
             <Table.Column width={200} align="center" fixed>
               <Table.HeaderCell>#</Table.HeaderCell>
@@ -46,7 +52,7 @@ function MentorTable() {
               <Table.Cell dataKey="companyName" />
             </Table.Column>
           </Table>
-          <div style={{ padding: 20 }} className='text-white'>
+          {/* <div style={{ padding: 20 }} className='text-white'>
             <Pagination
               prev
               next
@@ -58,13 +64,13 @@ function MentorTable() {
               size="xs"
               layout={['total', '-', 'limit', '|', 'pager', 'skip']}
               total={TrendingTableData.length}
-              limitOptions={[10, 20]}
+              limitOptions={[1, 2]}
               limit={limit}
               activePage={page}
               onChangePage={setPage}
               onChangeLimit={handleChangeLimit}
             />
-          </div>
+          </div> */}
         </Panel>
       </div>
     );

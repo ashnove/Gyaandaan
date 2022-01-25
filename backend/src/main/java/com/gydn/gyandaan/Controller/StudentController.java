@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping
+@RequestMapping()
 @CrossOrigin(origins = "*")
 public class StudentController {
     @Autowired
@@ -55,17 +55,17 @@ public class StudentController {
         return authService.login(username, password);
     }
 
-    @GetMapping("/autoLogin")
-    public ResponseEntity<?> autoLogin() {
-        logger.info("AutoLogin");
-        return authService.autoLogin();
-    }
+    // @GetMapping("/autoLogin")
+    // public ResponseEntity<?> autoLogin() {
+    //     logger.info("AutoLogin");
+    //     return authService.autoLogin();
+    // }
 
-    @GetMapping("/logout")
-    public ResponseEntity<?> logout() {
-        logger.info("logging out" + authService.currUser==null?"null":authService.currUser.getStudentUsername());
-        return authService.logout();
-    }
+    // @GetMapping("/logout")
+    // public ResponseEntity<?> logout() {
+    //     logger.info("logging out" + authService.currUser==null?"null":authService.currUser.getStudentUsername());
+    //     return authService.logout();
+    // }
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestParam("username") String username, @RequestParam("password") String password,  @RequestParam("email") String email) {

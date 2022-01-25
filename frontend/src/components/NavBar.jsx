@@ -27,7 +27,7 @@ const NavBar = () => {
 			</Navbar.Brand>
 			<Nav>
 				<Nav.Item>
-					<Link to="/" style={{ textDecoration: "none", color: "white" }}>
+					<Link to="/home" style={{ textDecoration: "none", color: "white" }}>
 						Home
 					</Link>
 				</Nav.Item>
@@ -38,9 +38,6 @@ const NavBar = () => {
 				</Nav.Item>
 			</Nav>
 			<Nav pullRight>
-				<Dropdown title="Status">
-					<Dropdown.Item style={{color:color}}>{status}</Dropdown.Item>
-				</Dropdown>
 				<Nav.Item>
 					<Link to="/logout" style={{ textDecoration: "none", color: "white" }}>
 						Logout
