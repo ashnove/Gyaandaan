@@ -20,7 +20,7 @@ function App() {
 					<Router>
 						<NavBar />
 						<Routes>
-							<Route exact path="/" element={<Navigate from="/" to="/login" exact />} />
+							<Route exact path="/" element={<Navigate from="/" to="/home" exact />} />
 							<Route exact path="/login" element={<Login />} />
 							<Route exact path="/register" element={<Register />} />
 							<Route exact path="/home" element={<ProtectedRoute component={Home} />} />

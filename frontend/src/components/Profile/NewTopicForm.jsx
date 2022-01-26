@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
@@ -11,21 +11,33 @@ const formStyle={
   width: "300px",
 };
 
+
+
 const NewTopicForm = () => {
+
+
+  const [newTopic,setNewTopic] = useState("");
+  function handleChange(event){
+    console.log(event.target);
+  }
+  function handleSubmit(event){
+    console.log("Submit ho gya");
+    event.preventDefault();
+  }
+
   return (
     <div>
       <br></br>
       <Form>
+
       <Form.Group className="mb-2" style={formStyle}>
         <Form.Label>Not present in above list? Add Below.</Form.Label>
-        <Form.Control placeholder="Add extra topic names here" name="newTopic"/>
-        
-      </Form.Group>
-      <Form.Group className="mb-2" controlId="formBasicEmail" style={{display:"none"}}>
-        <Form.Control placeholder="Add extra topic names here" />
+        <Form.Control placeholder="Add extra topic names here" name="newTopic" onChange={handleChange}/>
       </Form.Group>
 
-      <Button variant="primary" type="submit" formMethod='post' formAction='./saveTopic' style={buttonstyle}>
+      {/* type="submit" formMethod='post' formAction='./saveTopic' onSubmit={handleSubmit} */}
+
+      <Button variant="primary"   style={buttonstyle}>
         Submit
       </Button>
       

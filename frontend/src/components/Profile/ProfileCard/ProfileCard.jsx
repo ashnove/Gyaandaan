@@ -19,12 +19,14 @@ const ProfileCard = (props) => {
 		temp = "Offline";
 	}
 
-	const [usertype, setUsertype] = useState();
+	const [usertype, setUsertype] = useState(type);
 	const [status, setStatus] = useState(temp);
+
+	console.log(usertype);
 
 	let toBedisplayed;
 	let imageUrl;
-	if (usertype === "volunteer") {
+	if (usertype === 2) {
 		imageUrl =
 			"https://media.istockphoto.com/photos/very-closeup-view-of-amazing-domestic-pet-in-mirror-round-fashion-is-picture-id1281804798";
 		toBedisplayed = (
@@ -50,11 +52,12 @@ const ProfileCard = (props) => {
 		console.log(`My status has changed to${usertype} - ${status}`);
 
 		// now go nuts with this info from here
+
 	}
 
 	const selectUsertypeDropdown = (
 		<Dropdown
-			title={usertype == 1 ? "Student" : "Volunteer"}
+			title={usertype === 1 ? "Student" : "Volunteer"}
 			style={chhotoDropdownstyle}
 			onChange={handleChange}
 		>
@@ -67,7 +70,7 @@ const ProfileCard = (props) => {
 			</Dropdown.Item>
 			<Dropdown.Item
 				onSelect={() => {
-					setUsertype(0);
+					setUsertype(2);
 				}}
 			>
 				I am a Volunteer
