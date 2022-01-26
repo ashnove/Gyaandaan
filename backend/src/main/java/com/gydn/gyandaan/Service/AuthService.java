@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 public class AuthService {
     @Autowired
     StudentRepository studentRepository;
-    
+
     @Autowired
     StudentService studentService;
 
@@ -31,12 +31,11 @@ public class AuthService {
     public ResponseEntity<?> login(String username, String password) {
         Student user;
         try {
-            user =  studentRepository.findByUsername(username);
-        }
-        catch(Exception e){
+            user = studentRepository.findByUsername(username);
+        } catch (Exception e) {
             return ResponseEntity.status(401).body(Map.of("Message", "Login Failed"));
         }
-        if(user == null)
+        if (user == null)
             return ResponseEntity.status(401).body(Map.of("Message", "No Such Username exists"));
 
         HttpHeaders headers = new HttpHeaders();
@@ -47,37 +46,42 @@ public class AuthService {
     }
 
     // public ResponseEntity<?> autoLogin() {
-        
-    //     if(authService.currUser == null)
-    //         return ResponseEntity.status(401).body(null);
 
-    //     return ResponseEntity.ok().body(studentService.export(authService.currUser));
+    // if(authService.currUser == null)
+    // return ResponseEntity.status(401).body(null);
+
+    // return ResponseEntity.ok().body(studentService.export(authService.currUser));
     // }
 
     // public ResponseEntity<?> logout() {
-        
-    //     authService.currUser.setToken(null);
-    //     studentRepository.save(authService.currUser);
-    //     authService.currUser = null;
-    //     return ResponseEntity.ok().body(true);
+
+    // authService.currUser.setToken(null);
+    // studentRepository.save(authService.currUser);
+    // authService.currUser = null;
+    // return ResponseEntity.ok().body(true);
     // }
 
-    public ResponseEntity<?> register(String username, String password, String email) {
+    public ResponseEntity<?> register(Student student) {
 
         String token = generateNewToken();
-        Student newUser = new Student(username, password, email, token);
+        Student newUser = new Student(student.getUsername(), student.getPassword(),
+                student.getFirstname(), student.getLastname(), student.getEmail(), token);
+        newUser.setAvailable(false);
+        newUser.setType(1L);
+        newUser.setSessions(0L);
         studentRepository.save(newUser);
 
         HttpHeaders headers = new HttpHeaders();
         headers.set("Token", token);
         headers.set("Access-Control-Expose-Headers", "Token");
-        
+
         return ResponseEntity.ok().headers(headers).body(studentService.export(newUser, token));
     }
-    
+
     public String generateNewToken() {
         byte[] randomBytes = new byte[24];
         secureRandom.nextBytes(randomBytes);
         return base64Encoder.encodeToString(randomBytes);
     }
+
 }

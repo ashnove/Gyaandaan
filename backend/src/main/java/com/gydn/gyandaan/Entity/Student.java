@@ -20,7 +20,6 @@ import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-
 @Entity
 public class Student {
 
@@ -34,6 +33,7 @@ public class Student {
     private String email;
     private String token;
     private Boolean available;
+    private Long sessions;
     private Long type;
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -46,25 +46,36 @@ public class Student {
     }
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "student_topics",
-        joinColumns = { @JoinColumn(name = "student_id") },
-        inverseJoinColumns = { @JoinColumn(name = "topic_id") })
-    @JsonIgnoreProperties({"students"})
+    @JoinTable(name = "student_topics", joinColumns = { @JoinColumn(name = "student_id") }, inverseJoinColumns = {
+            @JoinColumn(name = "topic_id") })
+    @JsonIgnoreProperties({ "students" })
     private Set<Topic> topics = new HashSet<>();
 
-    public Student () {
-
+    public Student() {
+        this.available = false;
+        this.type = 1L;
+        this.sessions = 0L;
     }
-    
-    public Student(String username, String password, String email, String token) {
+
+    public Student(String username, String password, String firstname, String lastname, String email, String token) {
         this.username = username;
         this.password = password;
+        this.firstname = firstname;
+        this.lastname = lastname;
         this.email = email;
         this.token = token;
     }
 
     public Long getId() {
         return id;
+    }
+
+    public Long getSessions() {
+        return sessions;
+    }
+
+    public void setSessions(Long sessions) {
+        this.sessions = sessions;
     }
 
     public void setId(Long id) {
@@ -158,6 +169,4 @@ public class Student {
                 + ", token=" + token + ", topics=" + topics + ", type=" + type + ", username=" + username + "]";
     }
 
-    
-    
 }
