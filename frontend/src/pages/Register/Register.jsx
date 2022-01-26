@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import {
 	Container,
 	Header,
@@ -12,6 +12,9 @@ import {
 	ButtonToolbar,
 	Button,
 } from "rsuite";
+import axios from "axios";
+import ProfileContext from "../../context/ProfileContext";
+import { useContext } from "react";
 
 const { StringType, NumberType } = Schema.Types;
 
@@ -25,12 +28,9 @@ const model = Schema.Model({
 	password: StringType().isRequired("This field is required."),
 	verifyPassword: StringType()
 		.addRule((value, data) => {
-			console.log(data);
-
 			if (value !== data.password) {
 				return false;
 			}
-
 			return true;
 		}, "The two passwords do not match")
 		.isRequired("This field is required."),
@@ -47,6 +47,9 @@ const TextField = React.forwardRef((props, ref) => {
 });
 
 const Register = () => {
+	const history = useNavigate();
+	const profileContext = useContext(ProfileContext);
+	const { getProfileData } = profileContext;
 	const formRef = React.useRef();
 	const [formError, setFormError] = React.useState({});
 	const [formValue, setFormValue] = React.useState({
@@ -58,15 +61,42 @@ const Register = () => {
 		verifyPassword: "",
 	});
 
-	const handleSubmit = () => {
+	const handleSubmit = async () => {
 		if (!formRef.current.check()) {
 			console.error("Form Error");
 			return;
 		}
-		console.log(formValue, "Form Value");
+		const { username, firstname, lastname, email, password } = formValue;
+		setFormValue({
+			username: "",
+			firstname: "",
+			lastname: "",
+			email: "",
+			password: "",
+			verifyPassword: "",
+		});
+		const res = await axios.post(`http://localhost:8080/register`, {
+			username: username,
+			firstname: firstname,
+			lastname: lastname,
+			email: email,
+			password: password,
+		});
+		if (res.data.success) {
+			localStorage.setItem("token", res.data.token);
+			localStorage.setItem("isAuthenticated", true);
+			localStorage.setItem("username", username);
+			getProfileData();
+			history("/");
+		} else {
+		}
 	};
 
-	const handleLoginButton = () => {};
+	const isAuthenticated = localStorage.getItem("isAuthenticated");
+	useEffect(() => {
+		if (isAuthenticated) history("/");
+		// eslint-disable-next-line
+	}, []);
 
 	return (
 		<Container>

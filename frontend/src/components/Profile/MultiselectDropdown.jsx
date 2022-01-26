@@ -12,18 +12,11 @@ export default function MultiselectDropDown() {
 					data={DropDownData}
 					groupBy="category"
 					onSelect={(subject) => {
-						console.log(subject);
+						console.log(subject); 
 					}}
 					style={{ width: 300 }}
 				/>
-				<NewTopicForm />
-				<Button
-					ant="primary"
-					pe="submit"
-					formMethod="post"
-					formAction="./saveTopic"
-					style={buttonstyle}
-				>
+				<Button ant="primary" formMethod="post" formAction="./saveTopic" style={buttonstyle}>
 					Submit
 				</Button>
 			</Form>

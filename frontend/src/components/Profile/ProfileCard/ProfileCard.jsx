@@ -9,18 +9,12 @@ import ProfileContext from "../../../context/ProfileContext";
 
 const ProfileCard = (props) => {
 	const profileContext = useContext(ProfileContext);
-	const { ProfileData } = profileContext;
+	const { ProfileData, setAvailability } = profileContext;
 	const { username, firstname, email, lastname, isAvailable, sessions, type } = ProfileData;
-
 	let temp;
-	if (isAvailable) {
-		temp = "Online";
-	} else {
-		temp = "Offline";
-	}
+	// console.log(ProfileData);
 
 	const [usertype, setUsertype] = useState(type);
-	const [status, setStatus] = useState(temp);
 
 	console.log(usertype);
 
@@ -48,10 +42,8 @@ const ProfileCard = (props) => {
 	};
 
 	function handleChange() {
-		console.log(`My status has changed to${usertype} - ${status}`);
-
+		// console.log(`My status has changed to${usertype} - ${status}`);
 		// now go nuts with this info from here
-
 	}
 
 	const selectUsertypeDropdown = (
@@ -77,17 +69,21 @@ const ProfileCard = (props) => {
 		</Dropdown>
 	);
 	const selectStatusDropdown = (
-		<Dropdown title={status} style={chhotoDropdownstyle} onChange={handleChange}>
+		<Dropdown
+			title={isAvailable ? "Online" : "Offline"}
+			style={chhotoDropdownstyle}
+			onChange={handleChange}
+		>
 			<Dropdown.Item
 				onSelect={() => {
-					setStatus("Online");
+					setAvailability(true);
 				}}
 			>
 				Online
 			</Dropdown.Item>
 			<Dropdown.Item
 				onSelect={() => {
-					setStatus("Offline");
+					setAvailability(false);
 				}}
 			>
 				Offline

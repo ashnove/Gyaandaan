@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import {
 	Container,
 	Schema,
@@ -13,6 +13,7 @@ import {
 } from "rsuite";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
+import ProfileContext from "../../context/ProfileContext";
 
 const { StringType, NumberType } = Schema.Types;
 
@@ -32,7 +33,8 @@ const TextField = React.forwardRef((props, ref) => {
 });
 const Login = () => {
 	let history = useNavigate();
-
+	const profileContext = useContext(ProfileContext);
+	const { getProfileData } = profileContext;
 	const formRef = React.useRef();
 	const [formError, setFormError] = React.useState({});
 	const [access, setAccess] = React.useState("");
@@ -55,11 +57,12 @@ const Login = () => {
 		);
 		const username = formValue.username;
 		setFormValue({ username: "", password: "" });
-
+		// console.log(res);
 		if (res.data.success) {
 			localStorage.setItem("token", res.data.token);
 			localStorage.setItem("isAuthenticated", true);
 			localStorage.setItem("username", username);
+			getProfileData();
 			history("/home");
 		} else {
 			setFormHeader(
@@ -71,11 +74,6 @@ const Login = () => {
 					<h3>Login</h3>
 				</div>
 			);
-		}
-
-		if (!formRef.current.check()) {
-			console.error("Form Error");
-			return;
 		}
 		console.log(formValue, "Form Value");
 		if (formValue.username === admin.username && formValue.password === admin.password) {

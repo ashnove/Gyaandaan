@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { useEffect } from "react";
 import { Container, Header, Content, Footer, Sidebar, Panel } from "rsuite";
 
 import ProfileCard from "../components/Profile/ProfileCard/ProfileCard";
@@ -13,7 +14,12 @@ const temp = {
 
 const Profile = () => {
 	const profileContext = useContext(ProfileContext);
-	const { ProfileData } = profileContext;
+	const { ProfileData, getProfileData } = profileContext;
+	
+	useEffect(() => {
+		getProfileData();
+	}, []);
+
 	return (
 		<Container>
 			<Footer className="text-white">

@@ -127,11 +127,11 @@ function HomeContent() {
 				<SingleDropDown handleSelect={handleSelect} />
 				<Button
 					appearance="primary"
-					style={{ width: "6rem", margin: "0.5rem", backgroundColor: "#c0392b" }}
+					style={{ width: "10rem", margin: "0.5rem", backgroundColor: "#c0392b" }}
 					onClick={handleSubmit}
 					loading={loading}
 				>
-					Start a session with a Mentor
+					Get a Mentor
 				</Button>
 				<SessionPopUp
 					open={open}
