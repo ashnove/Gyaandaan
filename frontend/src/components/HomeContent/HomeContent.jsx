@@ -16,7 +16,15 @@ const loggedInUser = {
 var stompClient = null;
 function HomeContent() {
 	const context = useContext(AppContext);
-	const { forStudentMsg, setStudentMsg, startSession, setMeetLink } = context;
+	const {
+		forStudentMsg,
+		setStudentMsg,
+		startSession,
+		setMeetLink,
+		setStudentDetails,
+		receivingUser,
+		setReceivingUser,
+	} = context;
 
 	const [open, setOpen] = useState(false);
 	const handleOpen = () => {
@@ -26,7 +34,7 @@ function HomeContent() {
 	const handleClose = () => setOpen(false);
 
 	const [currentUser, setCurrentUser] = useState(loggedInUser);
-	const [receivingUser, setReceivingUser] = useState({});
+	// const [receivingUser, setReceivingUser] = useState({});
 	const [subject, setSubject] = useState("Select a Subject");
 
 	const handleSelect = (data) => {
@@ -41,6 +49,7 @@ function HomeContent() {
 		});
 		// if (json.success) {
 		setLoading(false);
+		setStudentDetails({ name: "ONKAR" });
 		setReceivingUser({
 			username: json.volunteerUsername,
 			name: json.volunteerName,
@@ -84,7 +93,10 @@ function HomeContent() {
 		const contentBody = JSON.parse(msg.body);
 		const content = contentBody.content;
 		const meetURLSocketResponse = contentBody.meetURL;
-		if (content == "REQUEST") setOpen(true);
+		if (content == "REQUEST") {
+			setStudentDetails({ name: "ONKAR" });
+			setOpen(true);
+		}
 		if (content == "ACCEPTED") {
 			setStudentMsg("Accepted");
 			setMeetLink(meetURLSocketResponse);

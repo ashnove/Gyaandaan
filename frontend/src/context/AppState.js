@@ -18,6 +18,8 @@ const AppState = (props) => {
 	const [students, setStudents] = useState([]);
 	const [forStudentMsg, setForStudentMsg] = useState("");
 	const [meetLink, setMeetLink] = useState("");
+	const [receivingUser, setReceivingUser] = useState({});
+	const [studentDetails, setStudentDetails] = useState({});
 
 	//POST REQUESTS
 	const addTopic = async (props) => {
@@ -35,7 +37,7 @@ const AppState = (props) => {
 	const startSession = async (props) => {
 		console.log(props);
 		const json = await axios.post(`${host}/startSession`, props);
-		return json;
+		return json.data;
 	};
 
 	//GET REQUESTS
@@ -79,6 +81,11 @@ const AppState = (props) => {
 				getMeeting,
 				forStudentMsg,
 				setStudentMsg,
+				studentDetails,
+				setStudentDetails,
+				meetLink,
+				receivingUser,
+				setReceivingUser,
 			}}
 		>
 			{props.children}

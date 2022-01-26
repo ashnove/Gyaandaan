@@ -11,7 +11,7 @@ import {
 	Sidebar,
 } from "rsuite";
 import AppContext from "../../context/AppContext";
-import volunteerService from "../../data/volunteerService";
+import ProfileContext from "../../context/ProfileContext";
 import { Loader } from "rsuite";
 
 const VolunInfo = (props) => {
@@ -19,9 +19,11 @@ const VolunInfo = (props) => {
 
 	const [volunteerName, setvolunteerName] = useState(props.name);
 
-	const context = useContext(AppContext);
-	const { forStudentMsg, getMeeting, meetLink } = context;
-	const data = volunteerService;
+	const appContext = useContext(AppContext);
+	const profileContext = useContext(ProfileContext);
+	const { ProfileData } = profileContext;
+	const { forStudentMsg, getMeeting, meetLink, receivingUser } = appContext;
+	const receivingUserData = receivingUser;
 	const ACCEPTED = "ACCEPTED";
 	const REJECTED = "REJECTED";
 
@@ -42,7 +44,7 @@ const VolunInfo = (props) => {
 		toBedisplayed = (
 			<Container>
 				<Container>
-					<Content> {data.volunteerFirstname + " " + data.volunteerLastname}</Content>
+					<Content> {ProfileData.firstname + " " + ProfileData.lastname}</Content>
 					<Sidebar>
 						<div style={{ float: "right", display: "flex", columnGap: "2px" }}>
 							<Button color="green" appearance="primary" onClick={SessionMeetGeneration}>
@@ -61,7 +63,7 @@ const VolunInfo = (props) => {
 		toBedisplayed = (
 			<div>
 				<div style={{ display: "flex" }}>
-					<div> {data.volunteerFirstname + " " + data.volunteerLastname} </div>
+					<div> {receivingUserData.name} </div>
 					{forStudentMsg === "" ? (
 						<div style={{ float: "right" }}>
 							<Badge color="red">Waiting for response</Badge>
@@ -77,7 +79,7 @@ const VolunInfo = (props) => {
 					)}
 					<br />
 				</div>
-				<p> {data.volunteerUsername} </p>
+				<p> {receivingUserData.username} </p>
 			</div>
 		);
 	}
