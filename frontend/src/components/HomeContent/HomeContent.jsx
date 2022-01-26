@@ -92,14 +92,14 @@ function HomeContent() {
 		// Volunteer ke liye pop-up kholna hai
 		const contentBody = JSON.parse(msg.body);
 		const content = contentBody.content;
-		const meetURLSocketResponse = contentBody.meetURL;
+		// const meetURLSocketResponse = contentBody.meetURL;
 		if (content == "REQUEST") {
 			setStudentDetails({ name: "ONKAR" });
 			setOpen(true);
 		}
 		if (content == "ACCEPTED") {
 			setStudentMsg("Accepted");
-			setMeetLink(meetURLSocketResponse);
+			// setMeetLink(meetURLSocketResponse);
 		}
 		if (content == "REJECTED") {
 			setStudentMsg("Rejected");
