@@ -4,6 +4,7 @@ import SingleDropDown from "../Dropdown/SingleDropDown";
 import TrendingTable from "../Tables/TrendingTable";
 import SessionPopUp from "../SessionPopUp/SessionPopUp";
 import AppContext from "../../context/AppContext";
+import ProfileContext from "../../context/ProfileContext";
 
 const loggedInUser = {
 	id: "1",
@@ -15,7 +16,8 @@ const loggedInUser = {
 
 var stompClient = null;
 function HomeContent() {
-	const context = useContext(AppContext);
+	const appContext = useContext(AppContext);
+	const profileContext = useContext(ProfileContext);
 	const {
 		forStudentMsg,
 		setStudentMsg,
@@ -24,7 +26,8 @@ function HomeContent() {
 		setStudentDetails,
 		receivingUser,
 		setReceivingUser,
-	} = context;
+	} = appContext;
+	const { ProfileData, getProfileData } = profileContext;
 
 	const [open, setOpen] = useState(false);
 	const handleOpen = () => {
@@ -32,9 +35,10 @@ function HomeContent() {
 		sendMessage("REQUEST");
 	};
 	const handleClose = () => setOpen(false);
-
-	const [currentUser, setCurrentUser] = useState(loggedInUser);
-	// const [receivingUser, setReceivingUser] = useState({});
+	const currentUser = {
+		username: localStorage.getItem("username"),
+		name: ProfileData.firstname,
+	};
 	const [subject, setSubject] = useState("Select a Subject");
 
 	const handleSelect = (data) => {
@@ -50,12 +54,16 @@ function HomeContent() {
 		// if (json.success) {
 		setLoading(false);
 		setStudentDetails({ name: "ONKAR" });
-		setReceivingUser({
+		
+		setReceivingUser((prevState) => ({
+			...prevState,
 			username: json.volunteerUsername,
 			name: json.volunteerName,
 			type: "volunteer",
 			displayType: "volunteer",
-		});
+		}));
+		console.log(receivingUser);
+		console.log("ReCjdkajlksdjkl");
 
 		handleOpen();
 		// } else {
@@ -110,6 +118,7 @@ function HomeContent() {
 
 	const sendMessage = (msg) => {
 		if (msg.trim() !== "") {
+			console.log(receivingUser);
 			const message = {
 				senderId: currentUser.username,
 				recipientId: receivingUser.username,
@@ -119,7 +128,7 @@ function HomeContent() {
 				timestamp: new Date(),
 			};
 			// convert to "gydn/request"
-			stompClient.send("gydn/request", {}, JSON.stringify(message));
+			stompClient.send("/gydn/request", {}, JSON.stringify(message));
 			console.log(msg);
 		}
 	};

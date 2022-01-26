@@ -18,7 +18,12 @@ const AppState = (props) => {
 	const [students, setStudents] = useState([]);
 	const [forStudentMsg, setForStudentMsg] = useState("");
 	const [meetLink, setMeetLink] = useState("");
-	const [receivingUser, setReceivingUser] = useState({});
+	const [receivingUser, setReceivingUser] = useState({
+		username: "",
+		name: "",
+		type: "volunteer",
+		displayType: "volunteer",
+	});
 	const [studentDetails, setStudentDetails] = useState({});
 
 	//POST REQUESTS

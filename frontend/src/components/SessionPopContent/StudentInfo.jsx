@@ -13,7 +13,6 @@ const StudentInfo = (props) => {
 	const displayingFor = props.displayType;
 
 	// const studentData = students;
-	console.log(studentData);
 
 	return (
 		<div>

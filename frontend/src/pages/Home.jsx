@@ -1,68 +1,48 @@
-import React, { useState, useEffect } from 'react';
-import HomeContent from "../components/HomeContent/HomeContent"
-import { Loader } from 'rsuite';
-
+import React, { useState, useEffect, useContext } from "react";
+import HomeContent from "../components/HomeContent/HomeContent";
+import { Loader } from "rsuite";
+import ProfileContext from "../context/ProfileContext";
 
 const Home = () => {
-  const loaderStyle={
-    height:"800px",
-    width:"100% ",
-    margin:"auto",
-    padding:"200px",
-    backgroundColor:"grey",
-  };
+	const profileContext = useContext(ProfileContext);
+	const { getProfileData } = profileContext;
 
-  const [loading, setLoading] = useState(true);
+	const loaderStyle = {
+		height: "800px",
+		width: "100% ",
+		margin: "auto",
+		padding: "200px",
+		backgroundColor: "grey",
+	};
 
-  const instance = (
-    <div id="loaderInverseWrapper" style={loaderStyle}>
-    <Loader inverse center content="loading..." />
-  </div>
-  );
+	const [loading, setLoading] = useState(true);
 
-  function contentLoaded() {
-    setLoading(false);
-    console.log("load ho gya");
-  }
+	const instance = (
+		<div id="loaderInverseWrapper" style={loaderStyle}>
+			<Loader inverse center content="loading..." />
+		</div>
+	);
 
-  // {
-  //   style={{display: loading ? "none" : "block"}}; 
-  //   onLoad={contentLoaded};
-  // }
+	function contentLoaded() {
+		setLoading(false);
+		console.log("load ho gya");
+	}
 
-  setTimeout(() =>
-    setLoading(false), 1000);
+	setTimeout(() => setLoading(false), 1000);
 
-  // useEffect(
-  //   () => {
-  //     let timer1 = setTimeout(() => setLoading(true), 5000);
-  //     console.log("5seconds");
+	useEffect(() => {
+		getProfileData();
+	});
 
-  //     // this will clear Timeout
-  //     // when component unmount like in willComponentUnmount
-  //     // and show will not change to true
-  //     return () => {
-  //       clearTimeout(timer1);
-  //       contentLoaded();
-  //     };
-      
-  //   },
-    // useEffect will run only one time with empty []
-    // if you pass a value to array,
-    // like this - [data]
-    // than clearTimeout will run every time
-    // this value changes (useEffect re-run)
-  //   []
-  // );
-
-  return (
-    <div>
-      <div style={{display: loading ? "block" : "none"}}>{instance} </div>
-      <div style={{display: loading ? "none" : "block"}}><HomeContent/></div>
-      {/* style={{display: loading ? "none" : "block"}};  */}
-    </div>
-  );
-  
+	return (
+		<div>
+			<div style={{ display: loading ? "block" : "none" }}>{instance} </div>
+			<div style={{ display: loading ? "none" : "block" }}>
+				<HomeContent />
+			</div>
+			{/* style={{display: loading ? "none" : "block"}};  */}
+		</div>
+	);
 };
 
 export default Home;

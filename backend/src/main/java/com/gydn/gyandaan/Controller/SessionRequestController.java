@@ -15,25 +15,28 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 @Controller
 @CrossOrigin(origins = "*")
 public class SessionRequestController {
-    
-    @Autowired 
+
+    @Autowired
     private SimpMessagingTemplate messagingTemplate;
-    @Autowired private SessionRoomService sessionRoomService;
+    @Autowired
+    private SessionRoomService sessionRoomService;
 
     Logger logger = LoggerFactory.getLogger(SessionRequestController.class);
 
     @MessageMapping("/request")
     public void processMessage(@Payload SessionRequest sessionRequest) {
 
-        var sessionId = sessionRoomService.getSessionId(sessionRequest.getSenderId(), sessionRequest.getRecipientId(), true);
+        var sessionId = sessionRoomService.getSessionId(sessionRequest.getSenderId(), sessionRequest.getRecipientId(),
+                true);
         sessionRequest.setSessionId(sessionId.get());
 
         SessionRequest recievedRequest = new SessionRequest();
-        recievedRequest.setId(sessionRequest.getId());
+        // recievedRequest.setId(sessionRequest.getId());
         recievedRequest.setSenderId(sessionRequest.getSenderId());
         recievedRequest.setSenderName(sessionRequest.getSenderName());
         recievedRequest.setContent(sessionRequest.getContent());
-        logger.info(sessionRequest.getSenderName() + " sent '"+ sessionRequest.getContent() +"' to " + sessionRequest.getRecipientName());
-        messagingTemplate.convertAndSendToUser( sessionRequest.getRecipientId(),"/queue/requests", recievedRequest );
+        logger.info(sessionRequest.getSenderName() + " sent '" + sessionRequest.getContent() + "' to "
+                + sessionRequest.getRecipientName());
+        messagingTemplate.convertAndSendToUser(sessionRequest.getRecipientId(), "/queue/requests", recievedRequest);
     }
 }

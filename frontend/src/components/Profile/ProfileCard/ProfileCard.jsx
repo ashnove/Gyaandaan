@@ -6,9 +6,12 @@ import MultiselectDropDown from "../MultiselectDropdown";
 import { Button, IconButton, ButtonGroup, ButtonToolbar } from "rsuite";
 import { Dropdown } from "rsuite";
 import ProfileContext from "../../../context/ProfileContext";
+import AppContext from "../../../context/AppContext";
 
 const ProfileCard = (props) => {
 	const profileContext = useContext(ProfileContext);
+	const appContext = useContext(AppContext);
+	const { receivingUser } = appContext;
 	const { ProfileData, setAvailability } = profileContext;
 	const { username, firstname, email, lastname, isAvailable, sessions, type } = ProfileData;
 	let temp;
