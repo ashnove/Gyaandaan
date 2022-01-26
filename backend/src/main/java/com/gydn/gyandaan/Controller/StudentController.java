@@ -90,4 +90,10 @@ public class StudentController {
         // password);
         return authService.register(student);
     }
+
+    @GetMapping("/updateProfile")
+    public ResponseEntity<?> updateProfileController(@RequestBody Student student) {
+        logger.info("Student update is invoked");
+        return studentService.updateProfileService(student);
+    }
 }
