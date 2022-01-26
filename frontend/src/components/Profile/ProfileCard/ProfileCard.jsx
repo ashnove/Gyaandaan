@@ -33,7 +33,6 @@ const ProfileCard = (props) => {
 			<div>
 				Add the topics of your expertise here:
 				<MultiselectDropDown />
-				<NewTopicForm />
 			</div>
 		);
 	} else {

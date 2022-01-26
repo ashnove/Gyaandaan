@@ -89,7 +89,10 @@ function HomeContent() {
 			setStudentMsg("Accepted");
 			setMeetLink(meetURLSocketResponse);
 		}
-		if (content == "REJECTED") setStudentMsg("Rejected");
+		if (content == "REJECTED") {
+			setStudentMsg("Rejected");
+			setTimeout(() => setOpen(false), 3000);
+		}
 		const notification = JSON.parse(msg.body);
 	};
 
