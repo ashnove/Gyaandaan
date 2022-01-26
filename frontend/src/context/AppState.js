@@ -10,7 +10,7 @@ import volunteerPrefService from "../data/volunteerPrefService";
 import sessionService from "../data/sessionService";
 
 const AppState = (props) => {
-	const host = "http://localhost:8080/gydn";
+	const host = "http://localhost:8080";
 
 	//STATES
 	const [topics, setTopics] = useState([]);
@@ -29,11 +29,8 @@ const AppState = (props) => {
 	const addStudent = async () => {
 		await axios.post(`${host}/addStudent`, studentService);
 	};
-	const saveStudentPref = async () => {
-		await axios.post(`${host}/saveStudentPref`, studentPrefService);
-	};
-	const saveVolunteerPref = async () => {
-		await axios.post(`${host}/saveVolunteerPref`, volunteerPrefService);
+	const saveStudentPref = async (prefList) => {
+		await axios.post(`${host}/saveStudentPref`, prefList);
 	};
 	const startSession = async (props) => {
 		await axios.post(`${host}/startSession`, props);
@@ -42,6 +39,7 @@ const AppState = (props) => {
 	//GET REQUESTS
 	const getTopics = async () => {
 		const json = await axios.get(`${host}/topics`);
+		console.log(json.data);
 		setTopics(Array.from(json.data));
 	};
 	const getVolunteers = async () => {
@@ -72,7 +70,6 @@ const AppState = (props) => {
 				addVolunteer,
 				addStudent,
 				saveStudentPref,
-				saveVolunteerPref,
 				startSession,
 				getTopics,
 				getVolunteers,

@@ -17,7 +17,7 @@ const ProfileState = (props) => {
 
 	const getProfileData = async () => {
 		const json = await axios.post(`${host}/getUser?username=${localStorage.getItem("username")}`);
-		console.log(json.data);
+		// console.log(json.data);
 		setProfileData({
 			username: json.data.username,
 			firstname: json.data.firstname,

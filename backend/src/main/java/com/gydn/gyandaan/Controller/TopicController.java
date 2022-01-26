@@ -1,6 +1,7 @@
 package com.gydn.gyandaan.Controller;
 
 import java.util.List;
+import java.util.Map;
 
 import com.gydn.gyandaan.Entity.Topic;
 import com.gydn.gyandaan.Service.TopicService;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/gydn")
+@RequestMapping()
 @CrossOrigin(origins = "*")
 public class TopicController {
 
@@ -26,13 +27,13 @@ public class TopicController {
     Logger logger = LoggerFactory.getLogger(TopicController.class);
 
     @PostMapping("/addTopic")
-    public List<Topic> saveTopicController(@RequestBody List<Topic> topic){
+    public List<Topic> saveTopicController(@RequestBody List<Topic> topic) {
         logger.info("New topic count = " + topic.size() + " added");
         return topicService.saveTopicService(topic);
     }
 
     @GetMapping("/topics")
-    public List<Topic> getAllTopicsController() {
+    public List<Map<String, Object>> getAllTopicsController() {
         logger.info("Fetching all topics");
         return topicService.getAllTopicsService();
     }

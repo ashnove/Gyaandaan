@@ -16,10 +16,11 @@ public class TopicService {
     @Autowired
     TopicRepository topicRepository;
 
-    public List<Topic> saveTopicService(List<Topic> topic){
+    public List<Topic> saveTopicService(List<Topic> topic) {
         return topicRepository.saveAll(topic);
     }
-    public List<Topic> getAllTopicsService(){
+
+    public List<Map<String, Object>> getAllTopicsService() {
         List<Topic> topics = topicRepository.findAll();
         List<Map<String, Object>> topicsResponse = new ArrayList<>();
         topics.forEach(topic -> {
@@ -29,6 +30,6 @@ public class TopicService {
             map.put("category", topic.getCategory());
             topicsResponse.add(map);
         });
-        return topics;
+        return topicsResponse;
     }
 }

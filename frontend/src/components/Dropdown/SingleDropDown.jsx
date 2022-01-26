@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { SelectPicker } from "rsuite";
 import DropDownData from "../../data/DropdownData";
 import { TagPicker } from "rsuite";
+import AppContext from "../../context/AppContext";
 
 function compare(a, b) {
 	let nameA = a.toUpperCase();
@@ -17,10 +18,16 @@ function compare(a, b) {
 }
 
 const SingleDropDown = (props) => {
+	const appContext = useContext(AppContext);
+	const { getTopics, topics } = appContext;
+	useEffect(() => {
+		getTopics();
+	}, []);
+
 	return (
 		<React.Fragment>
 			<SelectPicker
-				data={DropDownData}
+				data={topics}
 				groupBy="category"
 				onSelect={(subject) => {
 					props.handleSelect(subject);
