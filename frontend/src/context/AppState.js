@@ -60,14 +60,22 @@ const AppState = (props) => {
 		setStudents(Array.from(json.data));
 	};
 	const getMeeting = async () => {
-		const json = await axios.get(`${host}/meeting`);
-		setMeetLink(json.data.joinUrl);
+		// const json = await axios.get(`${host}/meeting`);
+		// setMeetLink(json.data.joinUrl);
 	};
 
 	//States
 	const setStudentMsg = (msg) => {
 		setForStudentMsg(msg);
 	};
+	function initializeReceivingUser() {
+		setReceivingUser({
+			username: "",
+			name: "",
+			type: "volunteer",
+			displayType: "volunteer",
+		});
+	}
 
 	return (
 		<AppContext.Provider
@@ -91,6 +99,7 @@ const AppState = (props) => {
 				meetLink,
 				receivingUser,
 				setReceivingUser,
+				initializeReceivingUser,
 			}}
 		>
 			{props.children}

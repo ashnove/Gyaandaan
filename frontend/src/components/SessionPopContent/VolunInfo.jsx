@@ -13,6 +13,7 @@ import {
 import AppContext from "../../context/AppContext";
 import ProfileContext from "../../context/ProfileContext";
 import { Loader } from "rsuite";
+import { useEffect } from "react";
 
 const VolunInfo = (props) => {
 	// props.name should contain name of current volunteer
@@ -22,7 +23,8 @@ const VolunInfo = (props) => {
 	const appContext = useContext(AppContext);
 	const profileContext = useContext(ProfileContext);
 	const { ProfileData } = profileContext;
-	const { forStudentMsg, getMeeting, meetLink, receivingUser } = appContext;
+	const { forStudentMsg, getMeeting, meetLink, receivingUser, setReceivingUser, studentDetails } =
+		appContext;
 	const receivingUserData = receivingUser;
 	const ACCEPTED = "ACCEPTED";
 	const REJECTED = "REJECTED";
@@ -31,12 +33,23 @@ const VolunInfo = (props) => {
 
 	const isVolun = displayingFor == "student" ? false : true;
 	const panelHeader = displayingFor == "student" ? "Assigned Mentor" : "";
+	let message = "";
+	function SessionMeetGeneration(msgType) {
+		if (msgType) getMeeting();
+		const newReceivingUser = {
+			username: studentDetails.username,
+			name: studentDetails.name,
+			type: "student",
+			displayType: "volunteer",
+		};
+		setReceivingUser((prevUser) => ({ ...prevUser, ...newReceivingUser }));
+	}
 
-	const SessionMeetGeneration = () => {
-		getMeeting();
+	useEffect(() => {
 		const meetURL = meetLink;
-		props.sendMessage(ACCEPTED + " " + meetURL);
-	};
+		if (receivingUser.username === "") return;
+		if (receivingUser.type === "student") props.sendMessage(ACCEPTED + " " + meetURL);
+	}, [receivingUser]);
 
 	let toBedisplayed;
 
@@ -47,10 +60,24 @@ const VolunInfo = (props) => {
 					<Content> {ProfileData.firstname + " " + ProfileData.lastname}</Content>
 					<Sidebar>
 						<div style={{ float: "right", display: "flex", columnGap: "2px" }}>
-							<Button color="green" appearance="primary" onClick={SessionMeetGeneration}>
+							<Button
+								color="green"
+								appearance="primary"
+								onClick={() => {
+									message = ACCEPTED;
+									SessionMeetGeneration(true);
+								}}
+							>
 								Accept
 							</Button>
-							<Button color="red" appearance="primary" onClick={() => props.sendMessage(REJECTED)}>
+							<Button
+								color="red"
+								appearance="primary"
+								onClick={() => {
+									message = REJECTED;
+									SessionMeetGeneration(false);
+								}}
+							>
 								Reject
 							</Button>
 						</div>

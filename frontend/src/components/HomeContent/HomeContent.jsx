@@ -26,15 +26,20 @@ function HomeContent() {
 		setStudentDetails,
 		receivingUser,
 		setReceivingUser,
+		initializeReceivingUser,
 	} = appContext;
 	const { ProfileData, getProfileData } = profileContext;
 
 	const [open, setOpen] = useState(false);
 	const handleOpen = () => {
 		setOpen(true);
-		sendMessage("REQUEST");
+		if (receivingUser.type === "volunteer") sendMessage("REQUEST");
 	};
-	const handleClose = () => setOpen(false);
+	const handleClose = () => {
+		setOpen(false);
+		initializeReceivingUser();
+	};
+
 	const currentUser = {
 		username: localStorage.getItem("username"),
 		name: ProfileData.firstname,
@@ -45,6 +50,11 @@ function HomeContent() {
 		setSubject(data);
 	};
 
+	useEffect(() => {
+		if (receivingUser.username === "") return;
+		handleOpen();
+	}, [receivingUser]);
+
 	const handleSubmit = async () => {
 		setLoading(true);
 		const json = await startSession({
@@ -54,21 +64,13 @@ function HomeContent() {
 		// if (json.success) {
 		setLoading(false);
 		setStudentDetails({ name: "ONKAR" });
-		
-		setReceivingUser((prevState) => ({
-			...prevState,
+		const newReceivingUser = {
 			username: json.volunteerUsername,
 			name: json.volunteerName,
 			type: "volunteer",
-			displayType: "volunteer",
-		}));
-		console.log(receivingUser);
-		console.log("ReCjdkajlksdjkl");
-
-		handleOpen();
-		// } else {
-		// 	//Volunteer not found
-		// }
+			displayType: "student",
+		};
+		setReceivingUser((prevUser) => ({ ...prevUser, ...newReceivingUser }));
 	};
 
 	const isVolunteer = loggedInUser.type == 0 ? true : false;
@@ -100,9 +102,10 @@ function HomeContent() {
 		// Volunteer ke liye pop-up kholna hai
 		const contentBody = JSON.parse(msg.body);
 		const content = contentBody.content;
+		// console.log(contentBody);
 		// const meetURLSocketResponse = contentBody.meetURL;
 		if (content == "REQUEST") {
-			setStudentDetails({ name: "ONKAR" });
+			setStudentDetails({ name: contentBody.senderName, username: contentBody.senderId });
 			setOpen(true);
 		}
 		if (content == "ACCEPTED") {
