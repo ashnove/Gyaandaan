@@ -35,6 +35,8 @@ public class SessionRequestController {
         recievedRequest.setSenderId(sessionRequest.getSenderId());
         recievedRequest.setSenderName(sessionRequest.getSenderName());
         recievedRequest.setContent(sessionRequest.getContent());
+        recievedRequest.setRecipientId(sessionRequest.getRecipientId());
+        recievedRequest.setRecipientName(sessionRequest.getRecipientName());
         logger.info(sessionRequest.getSenderName() + " sent '" + sessionRequest.getContent() + "' to "
                 + sessionRequest.getRecipientName());
         messagingTemplate.convertAndSendToUser(sessionRequest.getRecipientId(), "/queue/requests", recievedRequest);
