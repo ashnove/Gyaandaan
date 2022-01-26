@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/gydn")
+@RequestMapping()
 @CrossOrigin(origins = "*")
 public class SessionController {
 
@@ -25,13 +25,13 @@ public class SessionController {
     Logger logger = LoggerFactory.getLogger(SessionController.class);
 
     @PostMapping("/startSession")
-    public MatchResponse mactchStudentWithVolunteerController(@RequestBody MatchRequest matchRequest){
+    public MatchResponse mactchStudentWithVolunteerController(@RequestBody MatchRequest matchRequest) {
         logger.info("Student username = " + matchRequest.getStudentUsername() + " requested mentor");
         return matchingService.mactchStudentWithVolunteerService(matchRequest);
     }
 
     @PostMapping("/endSession")
-    public String endSessionController(@RequestBody EndSessionRequest endSessionRequest){
+    public String endSessionController(@RequestBody EndSessionRequest endSessionRequest) {
         logger.info(endSessionRequest.getUsername() + " requested for session end");
         matchingService.endSessionService(endSessionRequest);
         return "Session Ended for" + endSessionRequest.getUsername();

@@ -33,7 +33,9 @@ const AppState = (props) => {
 		await axios.post(`${host}/saveStudentPref`, prefList);
 	};
 	const startSession = async (props) => {
-		await axios.post(`${host}/startSession`, props);
+		console.log(props);
+		const json = await axios.post(`${host}/startSession`, props);
+		return json;
 	};
 
 	//GET REQUESTS

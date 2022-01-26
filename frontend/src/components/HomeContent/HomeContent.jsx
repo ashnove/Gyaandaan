@@ -36,22 +36,22 @@ function HomeContent() {
 	const handleSubmit = async () => {
 		setLoading(true);
 		const json = await startSession({
-			studentUsername: loggedInUser.username,
+			studentUsername: localStorage.getItem("username"),
 			topicName: subject,
 		});
-		if (json.success) {
-			setLoading(false);
-			setReceivingUser({
-				username: json.volunteerUsername,
-				name: json.volunteerName,
-				type: "volunteer",
-				displayType: "volunteer",
-			});
+		// if (json.success) {
+		setLoading(false);
+		setReceivingUser({
+			username: json.volunteerUsername,
+			name: json.volunteerName,
+			type: "volunteer",
+			displayType: "volunteer",
+		});
 
-			handleOpen();
-		} else {
-			//Volunteer not found
-		}
+		handleOpen();
+		// } else {
+		// 	//Volunteer not found
+		// }
 	};
 
 	const isVolunteer = loggedInUser.type == 0 ? true : false;
