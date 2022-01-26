@@ -26,50 +26,91 @@ public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long studentId;
-    private String studentUsername;
-    private String studentPassword;
-    private String studentFirstname;
-    private String studentLastname;
-    private String studentEmail;
+    private Long id;
+    private String username;
+    private String password;
+    private String firstname;
+    private String lastname;
+    private String email;
     private String token;
-    private Boolean studentIsAvailable;
+    private Boolean available;
+    private Long type;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
-    private Date studentTimestamp;
+    private Date lastSessionTimestamp;
 
     @PrePersist
     private void onCreate() {
-        studentTimestamp = new Date();
+        lastSessionTimestamp = new Date();
     }
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "student_topics",
         joinColumns = { @JoinColumn(name = "student_id") },
         inverseJoinColumns = { @JoinColumn(name = "topic_id") })
-    @JsonIgnoreProperties({"students","volunteers"})
+    @JsonIgnoreProperties({"students"})
     private Set<Topic> topics = new HashSet<>();
 
     public Student () {
 
     }
     
-    public Student(String studentUsername, String studentPassword, String studentEmail, String token) {
-        this.studentUsername = studentUsername;
-        this.studentPassword = studentPassword;
-        this.studentEmail = studentEmail;
+    public Student(String username, String password, String email, String token) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
         this.token = token;
     }
 
-    public String getStudentEmail() {
-        return studentEmail;
+    public Long getId() {
+        return id;
     }
 
-    public void setStudentEmail(String studentEmail) {
-        this.studentEmail = studentEmail;
+    public void setId(Long id) {
+        this.id = id;
     }
-    
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getToken() {
         return token;
     }
@@ -77,61 +118,29 @@ public class Student {
     public void setToken(String token) {
         this.token = token;
     }
-    
-    public String getStudentPassword() {
-        return studentPassword;
+
+    public Boolean getAvailable() {
+        return available;
     }
 
-    public void setStudentPassword(String studentPassword) {
-        this.studentPassword = studentPassword;
+    public void setAvailable(Boolean available) {
+        this.available = available;
     }
 
-    public Long getStudentId() {
-        return studentId;
+    public Long getType() {
+        return type;
     }
 
-    public void setStudentId(Long studentId) {
-        this.studentId = studentId;
+    public void setType(Long type) {
+        this.type = type;
     }
 
-    public String getStudentUsername() {
-        return studentUsername;
+    public Date getLastSessionTimestamp() {
+        return lastSessionTimestamp;
     }
 
-    public void setStudentUsername(String studentUsername) {
-        this.studentUsername = studentUsername;
-    }
-
-    public String getStudentFirstname() {
-        return studentFirstname;
-    }
-
-    public void setStudentFirstname(String studentFirstname) {
-        this.studentFirstname = studentFirstname;
-    }
-
-    public String getStudentLastname() {
-        return studentLastname;
-    }
-
-    public void setStudentLastname(String studentLastname) {
-        this.studentLastname = studentLastname;
-    }
-
-    public Boolean getStudentIsAvailable() {
-        return studentIsAvailable;
-    }
-
-    public void setStudentIsAvailable(Boolean studentIsAvailable) {
-        this.studentIsAvailable = studentIsAvailable;
-    }
-
-    public Date getStudentTimestamp() {
-        return studentTimestamp;
-    }
-
-    public void setStudentTimestamp(Date studentTimestamp) {
-        this.studentTimestamp = studentTimestamp;
+    public void setLastSessionTimestamp(Date lastSessionTimestamp) {
+        this.lastSessionTimestamp = lastSessionTimestamp;
     }
 
     public Set<Topic> getTopics() {
@@ -144,10 +153,11 @@ public class Student {
 
     @Override
     public String toString() {
-        return "Student [studentEmail=" + studentEmail + ", studentFirstname=" + studentFirstname + ", studentId="
-                + studentId + ", studentIsAvailable=" + studentIsAvailable + ", studentLastname=" + studentLastname
-                + ", studentTimestamp=" + studentTimestamp + ", studentUsername=" + studentUsername + ", token=" + token
-                + ", topics=" + topics + "]";
+        return "Student [available=" + available + ", email=" + email + ", firstname=" + firstname + ", id=" + id
+                + ", lastSessionTimestamp=" + lastSessionTimestamp + ", lastname=" + lastname + ", password=" + password
+                + ", token=" + token + ", topics=" + topics + ", type=" + type + ", username=" + username + "]";
     }
+
+    
     
 }

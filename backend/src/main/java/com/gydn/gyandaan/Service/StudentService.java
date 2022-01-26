@@ -9,7 +9,10 @@ import com.gydn.gyandaan.Entity.Topic;
 import com.gydn.gyandaan.Repository.StudentRepository;
 import com.gydn.gyandaan.Repository.TopicRepository;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -21,8 +24,10 @@ public class StudentService {
     @Autowired
     TopicRepository topicRepository;
 
+    Logger logger = LoggerFactory.getLogger(StudentService.class);
+
     public Student saveStudentPrefService(Student student){
-        Student getStudent = studentRepository.findStudentByName(student.getStudentUsername());
+        Student getStudent = studentRepository.findByUsername(student.getUsername());
         student.getTopics().forEach( (topic) -> {
             Topic getTopic = topicRepository.findTopicByName(topic.getTopicName());
             getStudent.getTopics().add(getTopic);
@@ -42,7 +47,36 @@ public class StudentService {
         return studentRepository.save(student);
     }
     public List<Student> getAllStudentsService(){
-        return studentRepository.findAll();
+        return studentRepository.findAllStudents();
+    }
+    public List<Student> getAllVolunteersService(){
+        return studentRepository.findAllVolunteers();
+    }
+
+    public ResponseEntity<?> changeAvailabilityStatus(String username, Boolean available){
+
+        Map<String, Object> response = new HashMap<>();
+        try{
+            if(available == true){
+                studentRepository.setVolunteerAvailable(username);
+            }
+            else {
+                studentRepository.setVolunteerUnavailable(username);
+            }
+            response.put("sucess", true);
+            response.put("message", "Updated Successfully");
+        }
+        catch(Exception e){
+            logger.error("Availability Change was Unsucessful");
+            response.put("sucess", false);
+            response.put("message", "Availability Change was Unsucessful");
+        }
+        return ResponseEntity.ok().body(response);
+    }
+
+    public ResponseEntity<?> updateProfileService(Student student) {    
+        Student updateStudent = studentRepository.findByUsername(student.getUsername());
+        return ResponseEntity.ok().body(studentRepository.save(student));
     }
 
     public Map<String, Object> export(Student user, String token) {

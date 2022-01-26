@@ -32,13 +32,13 @@ public class StudentController {
 
     @PostMapping("/saveStudentPref")
     public Student saveStudentPrefController(@RequestBody Student student){
-        logger.info("New preferences for " + student.getStudentUsername() + " saved");
+        logger.info("New preferences for " + student.getUsername() + " saved");
         return studentService.saveStudentPrefService(student);
     }
 
     @PostMapping("/addStudent")
     public Student addStudentController(@RequestBody Student student){
-        logger.info("Student username = " + student.getStudentUsername() + " added");
+        logger.info("Student username = " + student.getUsername() + " added");
         return studentService.addStudentService(student);
     }
 
@@ -47,12 +47,22 @@ public class StudentController {
         logger.info("Fetching all students");
         return studentService.getAllStudentsService();
     }
+    @GetMapping("/volunteers")
+    public List<Student> getAllVolunteersController(){
+        logger.info("Fetching all volunteers");
+        return studentService.getAllVolunteersService();
+    }
 
     //Requires Authentication
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestParam("username") String username, @RequestParam("password") String password) {
         logger.info("Logging in with username = "+username+", password = "+password);
         return authService.login(username, password);
+    }
+
+    public ResponseEntity<?> changeAvailabilityStatus(@RequestParam("username") String username, @RequestParam("available") Boolean available){
+        logger.info("User with username = "+username+" will have availability = "+available);
+        return studentService.changeAvailabilityStatus(username, available);
     }
 
     // @GetMapping("/autoLogin")

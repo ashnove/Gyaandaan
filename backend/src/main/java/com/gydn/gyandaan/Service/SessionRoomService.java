@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-import com.gydn.gyandaan.DTO.SessionRoom;
+import com.gydn.gyandaan.Entity.SessionRoom;
 import com.gydn.gyandaan.Repository.SessionRoomRepository;
 
 @Service

@@ -31,7 +31,7 @@ public class AuthService {
     public ResponseEntity<?> login(String username, String password) {
         Student user;
         try {
-            user =  studentRepository.findStudentByName(username);
+            user =  studentRepository.findByUsername(username);
         }
         catch(Exception e){
             return ResponseEntity.status(401).body(Map.of("Message", "Login Failed"));

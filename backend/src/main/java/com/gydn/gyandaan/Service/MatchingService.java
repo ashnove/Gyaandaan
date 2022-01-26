@@ -6,15 +6,13 @@ import java.util.Objects;
 import com.gydn.gyandaan.DTO.EndSessionRequest;
 import com.gydn.gyandaan.DTO.MatchRequest;
 import com.gydn.gyandaan.DTO.MatchResponse;
-import com.gydn.gyandaan.Entity.Volunteer;
-import com.gydn.gyandaan.Entity.VolunteerStatus;
-import com.gydn.gyandaan.Repository.VolunteerRepository;
-import com.gydn.gyandaan.Repository.VolunteerStatusRepository;
+import com.gydn.gyandaan.Entity.Student;
+import com.gydn.gyandaan.Entity.StudentHistory;
+import com.gydn.gyandaan.Repository.StudentHistoryRepository;
+import com.gydn.gyandaan.Repository.StudentRepository;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,30 +20,32 @@ import org.springframework.stereotype.Service;
 public class MatchingService {
 
     @Autowired
-    VolunteerRepository volunteerRepository;
+    StudentRepository studentRepository;
 
     @Autowired
-    VolunteerStatusRepository volunteerStatusRepository;
+    StudentHistoryRepository studentHistoryRepository;
 
-    Logger logger = LoggerFactory.getLogger(VolunteerService.class);
+    Logger logger = LoggerFactory.getLogger(MatchingService.class);
     
     public MatchResponse mactchStudentWithVolunteerService(MatchRequest matchRequest) {
         String studentUsername = matchRequest.getStudentUsername();
         String topicName = matchRequest.getTopicName();
 
-        Long availableVolunteerId = volunteerRepository.getAvailableVolunteer(topicName);
-        Volunteer availableVolunteer = volunteerRepository.findVolunteerById(availableVolunteerId);
+        Long availableVolunteerId = studentRepository.getAvailableVolunteer(topicName);
+        Student availableVolunteer = studentRepository.findById(availableVolunteerId).get();
         if(Objects.isNull(availableVolunteer)){
             return new MatchResponse(studentUsername, "UNAVAILABLE");
         }
 
-        Long volunteerId = availableVolunteer.getVolunteerId();
-        String volunteerUsername = availableVolunteer.getVolunteerUsername();     
+        Long volunteerId = availableVolunteer.getId();
+        String volunteerUsername = availableVolunteer.getUsername();     
         Date volunteerTimestamp = new Date();
-        volunteerRepository.updateVolunteerTimestamp(volunteerTimestamp, volunteerId);
+        studentRepository.updateVolunteerTimestamp(volunteerTimestamp, volunteerId);
+        StudentHistory studentHistory = new StudentHistory(volunteerId);
+        studentHistoryRepository.save(studentHistory);
 
         try {
-            volunteerRepository.setVolunteerUnavailable(volunteerId);
+            studentRepository.setVolunteerUnavailable(volunteerUsername);
         }
         catch(Exception e){
             logger.warn("Problem with the update query to set Mentor unavailable");
@@ -61,9 +61,7 @@ public class MatchingService {
         Long type = endSessionRequest.getType();
         // type = 1: Volunteer, 2: Student;
         if(type == 1){
-            Volunteer volunteer = volunteerRepository.findVolunteerByName(username);
-            Long volunteerId = volunteer.getVolunteerId();
-            volunteerRepository.setVolunteerAvailable(volunteerId);
+            studentRepository.setVolunteerAvailable(username);
         }
         else{
 

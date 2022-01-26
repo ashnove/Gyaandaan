@@ -15,13 +15,10 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 public class Topic {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long topicId;
     private String topicName;
-
-    @ManyToMany(mappedBy = "topics", fetch = FetchType.LAZY)
-	@JsonIgnoreProperties("topics")
-	private Set<Volunteer> volunteers = new HashSet<>() ;
+    private String category;
 
     @ManyToMany(mappedBy = "topics", fetch = FetchType.LAZY)
 	@JsonIgnoreProperties("topics")
@@ -34,9 +31,19 @@ public class Topic {
     public Long getTopicId() {
         return topicId;
     }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
     public void setTopicId(Long topicId) {
         this.topicId = topicId;
     }
+
     public String getTopicName() {
         return topicName;
     }
@@ -45,14 +52,6 @@ public class Topic {
         this.topicName = topicName;
     }
 
-    public Set<Volunteer> getVolunteers() {
-        return volunteers;
-    }
-
-    public void setVolunteers(Set<Volunteer> volunteers) {
-        this.volunteers = volunteers;
-    }
-    
     public Set<Student> getStudents() {
         return students;
     }
@@ -63,8 +62,7 @@ public class Topic {
 
     @Override
     public String toString() {
-        return "Topic [students=" + students + ", topicId=" + topicId + ", topicName=" + topicName + ", volunteers="
-                + volunteers + "]";
+        return "Topic [students=" + students + ", topicId=" + topicId + ", topicName=" + topicName + "]";
     }
 
     
