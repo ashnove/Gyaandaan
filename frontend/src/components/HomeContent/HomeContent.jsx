@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useContext } from "react";
-import { Button, Divider } from "rsuite";
+import React, { useState, useEffect, useContext, useCallback } from "react";
+import { Button, Divider, Toggle } from "rsuite";
 import SingleDropDown from "../Dropdown/SingleDropDown";
 import TrendingTable from "../Tables/TrendingTable";
 import SessionPopUp from "../SessionPopUp/SessionPopUp";
 import AppContext from "../../context/AppContext";
 import ProfileContext from "../../context/ProfileContext";
+import AsyncToggle from "../Toggle/AsyncToggle";
 
 const loggedInUser = {
 	id: "1",
@@ -28,7 +29,8 @@ function HomeContent() {
 		setReceivingUser,
 		initializeReceivingUser,
 	} = appContext;
-	const { ProfileData, getProfileData } = profileContext;
+	const { ProfileData, getProfileData, changeUserType } = profileContext;
+	const {type } = ProfileData;
 
 	const [open, setOpen] = useState(false);
 	const handleOpen = () => {
@@ -148,27 +150,33 @@ function HomeContent() {
 
 	return (
 		<React.Fragment>
-			<div style={{ marginTop: "20vh", textAlign: "center" }}>
-				<SingleDropDown handleSelect={handleSelect} />
-				<Button
-					appearance="primary"
-					style={{ width: "10rem", margin: "0.5rem", backgroundColor: "#c0392b" }}
-					onClick={handleSubmit}
-					loading={loading}
-				>
-					Get a Mentor
-				</Button>
-				<SessionPopUp
-					open={open}
-					handleOpen={handleOpen}
-					handleClose={handleClose}
-					sendMessage={sendMessage}
-					onLoad={handleLoad}
-					volunteer={receivingUser}
-				/>
-			</div>
-			<div style={{ marginTop: "1vh" }}>
-				<Divider className={"text-white"}>Trending Topics</Divider>
+			<div style={{ padding: '100px'}}>
+				<div style={{textAlign: 'center', marginBottom: '8vh'}}>
+					<p className="text-white" style={{ fontSize:'20px'}}>
+					Ready to recieve a Session Requests Mr. Onkar? ;)  &nbsp; &nbsp; 
+					<AsyncToggle  checkedChildren="Enable" unCheckedChildren="Disabled" />
+					</p>
+					<br />
+					<SingleDropDown handleSelect={handleSelect} />
+					<Button
+						appearance="primary"
+						style={{ width: "12rem", margin: "0.5rem", backgroundColor: "#c0392b" }}
+						onClick={handleSubmit}
+						loading={loading}
+					>
+						Start a session
+					</Button>
+					<SessionPopUp
+						open={open}
+						handleOpen={handleOpen}
+						handleClose={handleClose}
+						sendMessage={sendMessage}
+						onLoad={handleLoad}
+						volunteer={receivingUser}
+					/>
+				</div>
+				<hr/>	
+				{/* <Divider className={"text-white"}>Trending Topics</Divider> */}
 				<TrendingTable />
 			</div>
 		</React.Fragment>

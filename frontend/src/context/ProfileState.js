@@ -12,7 +12,7 @@ const ProfileState = (props) => {
 		lastname: "",
 		isAvailable: false,
 		sessions: 0,
-		type: "",
+		type: 1,
 	});
 
 	const getProfileData = async () => {
@@ -38,10 +38,20 @@ const ProfileState = (props) => {
 			setProfileData((prevState) => ({ ...prevState, isAvailable: available }));
 		// console.log(ProfileData);
 	};
+	const changeUserType = async (type) => {
+		const json = await axios.post(
+			`${host}/changeType?username=${localStorage.getItem(
+				"username"
+			)}&type=${type}`
+		);
+		if (json.data.success)
+			setProfileData((prevState) => ({ ...prevState, type: type }));
+		// console.log(ProfileData);
+	};
 
 	return (
 		<ProfileContext.Provider
-			value={{ ProfileData, setProfileData, getProfileData, setAvailability }}
+			value={{ ProfileData, setProfileData, getProfileData, setAvailability, changeUserType }}
 		>
 			{props.children}
 		</ProfileContext.Provider>

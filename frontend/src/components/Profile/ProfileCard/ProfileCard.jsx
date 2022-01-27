@@ -17,14 +17,11 @@ const ProfileCard = (props) => {
 	let temp;
 
 	const [usertype, setUsertype] = useState(type);
-
-	console.log(usertype);
-
 	let toBedisplayed;
 	let imageUrl;
 	if (usertype === 2) {
 		imageUrl =
-			"https://media.istockphoto.com/photos/very-closeup-view-of-amazing-domestic-pet-in-mirror-round-fashion-is-picture-id1281804798";
+			"https://avatars.githubusercontent.com/u/8225766";
 		toBedisplayed = (
 			<div>
 				Add the topics of your expertise here:
@@ -125,12 +122,12 @@ const ProfileCard = (props) => {
 					</Row>
 					<br></br>
 
-					<div className="container">
+					{/* <div className="container">
 						<div className="row">
 							<div className="col">{selectUsertypeDropdown}</div>
 							<div className="col">{selectStatusDropdown}</div>
 						</div>
-					</div>
+					</div> */}
 					<br />
 					{toBedisplayed}
 				</Card.Footer>
