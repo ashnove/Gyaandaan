@@ -15,9 +15,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface StudentRepository extends JpaRepository<Student, Long> {
 
-    String GET_AVAILABLE_VOLUNTEER_BY_TOPICNAME = "SELECT id FROM GYDNTABLE.topic t JOIN GYDNTABLE.student WHERE topic_name = ?1 AND available = 1 AND type = 2 ORDER BY last_session_timestamp DESC LIMIT 1";
+    String GET_AVAILABLE_VOLUNTEER_BY_TOPICNAME = "SELECT id FROM GYDNTABLE.topic t JOIN GYDNTABLE.student s WHERE t.topic_name = ?1 AND s.type = 2 AND s.username != ?2 ORDER BY s.last_session_timestamp DESC LIMIT 1";
     String SET_VOLUNTEER_UNAVAILABLE = "UPDATE GYDNTABLE.student v SET v.available = false WHERE v.username = ?1";
-    String SET_VOLUNTEER_AVAILABLE = "UPDATE GYDNTABLE.student v SET v.available = true WHERE v.username = ?1";
+    String SET_VOLUNTEER_AVAILABLE = "UPDATE GYDNTABLE.student v SET v.available = 1 WHERE v.username = ?1";
     String SET_USER_TYPE = "UPDATE GYDNTABLE.student v SET v.type = ?2 WHERE v.username = ?1";
     String GET_ALL_VOLUNTEERS = "SELECT * FROM GYDNTABLE.student v WHERE v.type = 2";
     String GET_ALL_STUDENTS = "SELECT * FROM GYDNTABLE.student v WHERE v.type = 1";
@@ -27,7 +27,7 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     public Student findByToken(String token);
 
     @Query(value = GET_AVAILABLE_VOLUNTEER_BY_TOPICNAME, nativeQuery = true)
-    public Long getAvailableVolunteer(String topicName);
+    public Long getAvailableVolunteer(String topicName, String username);
 
     @Query(value = GET_ALL_VOLUNTEERS, nativeQuery = true)
     public List<Student> findAllVolunteers();

@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping()
+@RequestMapping("/gydn")
 @CrossOrigin(origins = "*")
 public class StudentController {
     @Autowired
@@ -76,7 +76,7 @@ public class StudentController {
         logger.info("User with username = " + username + " will have availability = " + available);
         return studentService.changeAvailabilityStatus(username, available);
     }
-    
+
     @PostMapping("/changeType")
     public ResponseEntity<?> changeTypeController(@RequestParam("username") String username,
             @RequestParam("type") Long type) {

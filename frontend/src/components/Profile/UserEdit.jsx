@@ -30,28 +30,32 @@ function Editform(props) {
 	const profileContext = useContext(ProfileContext);
 	const { ProfileData, setProfileData } = profileContext;
 
+	// console.log(ProfileData);
+
+	// { username: "", firstname: "", email: "", lastname: "", isAvailable: false, sessions: 0, type: 1 }
+
 	function handleSubmit() {
 		// userData me sahise data aarha hai, in the above format.
 		// yahase axios use krke req bhejna padega
 	}
 
 	const onChangeProfileData = (e) => {
-		setProfileData(...ProfileData, { [e.target.name]: e.target.value });
+		setProfileData( {...ProfileData, [e.target.name]: e.target.value });
 	};
 
 	return (
-		<Form fluid onChange={onChangeProfileData}>
-			<Form.Group controlId="name">
+		<Form fluid >
+			<Form.Group controlId="firstname" onChange={onChangeProfileData}>
 				<Form.ControlLabel>First Name</Form.ControlLabel>
-				<Form.Control name="fname" type="text" value={ProfileData.firstname} />
+				<Form.Control name="firstname" type="text" value={ProfileData.firstname}  />
 			</Form.Group>
 
-			<Form.Group controlId="name">
+			<Form.Group controlId="lastname" onChange={onChangeProfileData}>
 				<Form.ControlLabel>Last Name</Form.ControlLabel>
-				<Form.Control name="lname" type="text" value={ProfileData.lastname} />
+				<Form.Control name="lastname" type="text" value={ProfileData.lastname} />
 			</Form.Group>
 
-			<Form.Group controlId="email-1">
+			<Form.Group controlId="email" onChange={onChangeProfileData}>
 				<Form.ControlLabel>Email</Form.ControlLabel>
 				<Form.Control name="email" type="email" value={ProfileData.email} />
 			</Form.Group>
@@ -61,7 +65,6 @@ function Editform(props) {
 					<Button appearance="primary" type="submit" onClick={handleSubmit}>
 						Submit
 					</Button>
-					<Button appearance="default">Cancel</Button>
 				</ButtonToolbar>
 			</Form.Group>
 		</Form>

@@ -75,7 +75,7 @@ const Register = () => {
 			password: "",
 			verifyPassword: "",
 		});
-		const res = await axios.post(`http://localhost:8080/register`, {
+		const res = await axios.post(`http://localhost:8080/gydn/register`, {
 			username: username,
 			firstname: firstname,
 			lastname: lastname,

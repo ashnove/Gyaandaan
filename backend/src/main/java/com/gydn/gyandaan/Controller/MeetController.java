@@ -26,7 +26,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 
 @RestController
-@RequestMapping()
+@RequestMapping("/gydn")
 @CrossOrigin(origins = "*")
 public class MeetController {
 
@@ -86,12 +86,12 @@ public class MeetController {
 
         Date creation = new Date(System.currentTimeMillis());
         Date tokenExpiry = new Date(System.currentTimeMillis() + (1000 * 60));
-        String zoomApiSecret = "AvYRo9c9cINw0Pv9A5oTZ1xmpm2Tcqa653w4";
+        String zoomApiSecret = "1ecbPfX4iBtPwbYEkyVKi35jorc7ugFWS77c";
         Key key = Keys
             .hmacShaKeyFor(zoomApiSecret.getBytes());
         return Jwts.builder()
             .setId(id)
-            .setIssuer("4G_LxciNQv-sEP0nG7JmHw")
+            .setIssuer("-gKKfUOiST-yc9zsNQRj1g")
             .setIssuedAt(creation)
             .setSubject("")
             .setExpiration(tokenExpiry)

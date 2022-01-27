@@ -53,7 +53,7 @@ const Login = () => {
 		e.preventDefault();
 
 		const res = await axios.post(
-			`http://localhost:8080/login?username=${formValue.username}&password=${formValue.password}`
+			`http://localhost:8080/gydn/login?username=${formValue.username}&password=${formValue.password}`
 		);
 		const username = formValue.username;
 		setFormValue({ username: "", password: "" });

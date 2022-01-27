@@ -10,15 +10,45 @@ const MeetInfo = (props) => {
 	const displayingFor = props.displayType;
 
 	const displayForStudent = (
-		<Panel header="Meeting Information" bordered>
-			<a href={meetLink}> Join ZOOM Meeting</a>
-		</Panel>
+		meetLink === ""   
+		?
+		( 	
+			<Panel header="Meeting Information" bordered>
+				<a> Your zoom meet will be generated once the Mentor Accepts your Request</a>
+			</Panel>
+		)
+		: 
+		(meetLink === "NULL" ?
+			<Panel header="Meeting Information" bordered>
+				<span>No meeting link created..</span>
+			</Panel>
+		:
+			<Panel header="Meeting Information" bordered>
+				<a href={meetLink} target="_blank">You meetlink is generated. Click here to join the session...</a>
+			</Panel>
+
+		)
 	);
 
 	const displayForVolunteer = (
-		<Panel header="Meeting Information" bordered>
-			<a href={meetLink}> Join ZOOM Meeting</a>
-		</Panel>
+		meetLink === ""   
+		?
+		( 	
+			<Panel header="Meeting Information" bordered>
+				<a> Your zoom meet will be generated once the you Accept the Request</a>
+			</Panel>
+		)
+		: 
+		(meetLink === "NULL" ?
+			<Panel header="Meeting Information" bordered>
+				<span>No meeting link created..</span>
+			</Panel>
+		:
+			<Panel header="Meeting Information" bordered>
+				<a href={meetLink} target="_blank">You meetlink is generated. Click here to join the session...</a>
+			</Panel>
+
+		)
 	);
 
 	return <div>{displayingFor == "student" ? displayForStudent : displayForVolunteer}</div>;

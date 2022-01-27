@@ -10,7 +10,7 @@ import volunteerPrefService from "../data/volunteerPrefService";
 import sessionService from "../data/sessionService";
 
 const AppState = (props) => {
-	const host = "http://localhost:8080";
+	const host = "http://localhost:8080/gydn";
 
 	//STATES
 	const [topics, setTopics] = useState([]);
@@ -60,9 +60,9 @@ const AppState = (props) => {
 		setStudents(Array.from(json.data));
 	};
 	const getMeeting = async () => {
-		// const json = await axios.get(`${host}/meeting`);
-		// setMeetLink(json.data.joinUrl);
-		setMeetLink("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+		const json = await axios.get(`${host}/meeting`);
+		setMeetLink(json.data.join_url);
+		// setMeetLink("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
 	};
 
 	//States

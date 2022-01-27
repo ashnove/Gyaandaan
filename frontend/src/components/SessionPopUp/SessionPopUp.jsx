@@ -18,7 +18,7 @@ const SessionPopUp = (props) => {
 					<Modal.Title>Session</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-					<Session volunteer={props.volunteer} sendMessage={props.sendMessage} />
+					<Session name={props.name} volunteer={props.volunteer} sendMessage={props.sendMessage} />
 				</Modal.Body>
 				<Modal.Footer>
 					<Button onClick={props.handleClose} appearance="primary">

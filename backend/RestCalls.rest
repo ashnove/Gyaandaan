@@ -1,5 +1,5 @@
 
-GET http://localhost:8080/volunteers
+GET http://localhost:8080/topics
 
 ###
 
@@ -7,10 +7,62 @@ POST  http://localhost:8080/addTopic
 Content-Type: application/json
 
 [
-    {
-        "topicName" : "DSA",
-        "category": "CSE"
-    }
+	{
+		"topicName": "Mathematics",
+		"category": "School(1-7)"
+	},
+	{
+		"topicName": "Science",
+		"category": "School(1-7)"
+	},
+	{
+		"topicName": "Social Science",
+		"category": "School(1-7)"
+	},
+	{
+		"topicName": "English",
+		"category": "School(1-7)"
+	},
+	{
+		"topicName": "Mathematics",
+		"category": "School(8-10)"
+	},
+	{
+		"topicName": "Science",
+		"category": "School(8-10)"
+	},
+	{
+		"topicName": "Social Science",
+		"category": "School(8-10)"
+	},
+	{
+		"topicName": "English",
+		"category": "School(8-10)"
+	},
+	{
+		"topicName": "Mathematics",
+		"category": "School(8-10)"
+	},
+	{
+		"topicName": "DSA",
+		"category": "CSE)"
+	},
+	{
+		"topicName": "DBMS",
+		"category": "CSE"
+	},
+	{
+		"topicName": "Stem Cells",
+		"category": "Biotechnology"
+	},
+	{
+		"topicName": "Bio-Informatics",
+		"category": "Biotechnology"
+	},
+	{
+		"topicName": "Control Systems",
+		"category": "Electronics"
+	}
 ]
 
 ###
@@ -26,3 +78,8 @@ Content-Type: application/json
         }
     ]
 }
+
+
+###
+
+GET http://localhost:8080/meeting

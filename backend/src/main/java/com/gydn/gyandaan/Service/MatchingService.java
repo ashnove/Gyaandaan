@@ -31,7 +31,7 @@ public class MatchingService {
         String studentUsername = matchRequest.getStudentUsername();
         String topicName = matchRequest.getTopicName();
 
-        Long availableVolunteerId = studentRepository.getAvailableVolunteer(topicName);
+        Long availableVolunteerId = studentRepository.getAvailableVolunteer(topicName, studentUsername);
         logger.info("availableVolunteerId = " + availableVolunteerId);
         Student availableVolunteer = studentRepository.findById(availableVolunteerId).get();
         String volunteerName = availableVolunteer.getFirstname() + " " + availableVolunteer.getLastname();
@@ -47,7 +47,7 @@ public class MatchingService {
         studentHistoryRepository.save(studentHistory);
 
         try {
-            studentRepository.setVolunteerUnavailable(volunteerUsername);
+            studentRepository.setUserType(volunteerUsername, 1L);
         } catch (Exception e) {
             logger.warn("Problem with the update query to set Mentor unavailable");
         }

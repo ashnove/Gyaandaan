@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping()
+@RequestMapping("gydn")
 @CrossOrigin(origins = "*")
 public class TopicController {
 
@@ -35,6 +35,12 @@ public class TopicController {
     @GetMapping("/topics")
     public List<Map<String, Object>> getAllTopicsController() {
         logger.info("Fetching all topics");
+        return topicService.getAllTopicsService();
+    }
+
+    @GetMapping("/getTrendingTopics")
+    public List<Map<String, Object>> getTrendingTopicsController() {
+        logger.info("Fetching all trending topics");
         return topicService.getAllTopicsService();
     }
 }

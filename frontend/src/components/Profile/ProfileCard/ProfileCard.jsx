@@ -16,12 +16,19 @@ const ProfileCard = (props) => {
 	const { username, firstname, email, lastname, isAvailable, sessions, type } = ProfileData;
 	let temp;
 
-	const [usertype, setUsertype] = useState(type);
+
+	const [usertype, setUsertype] = useState(type==1 ? "Student" : "Volunteer" );
+
+	if(type != 1){
+		
+	}
+	
+	
 	let toBedisplayed;
 	let imageUrl;
-	if (usertype === 2) {
+	if (usertype === "Volunteer") {
 		imageUrl =
-			"https://avatars.githubusercontent.com/u/8225766";
+			"https://inceptum-stor.icons8.com/O73LU2odqyKc/ph_user-circle-fill%202.jpg";
 		toBedisplayed = (
 			<div>
 				Add the topics of your expertise here:
@@ -29,7 +36,7 @@ const ProfileCard = (props) => {
 			</div>
 		);
 	} else {
-		imageUrl = "https://avatars.githubusercontent.com/u/8225666";
+		imageUrl = "https://inceptum-stor.icons8.com/O73LU2odqyKc/ph_user-circle-fill%202.jpg";
 		toBedisplayed = <div></div>;
 	}
 
@@ -47,7 +54,7 @@ const ProfileCard = (props) => {
 
 	const selectUsertypeDropdown = (
 		<Dropdown
-			title={usertype === 1 ? "Student" : "Volunteer"}
+			title={type}
 			style={chhotoDropdownstyle}
 			onChange={handleChange}
 		>
@@ -111,7 +118,9 @@ const ProfileCard = (props) => {
 					<Row xs="2" className="text-center mb-1">
 						<Col>
 							<Card.Text className={classes.TextBold + " " + classes.FooterP}>
-								{usertype == 1 ? "Student" : "Volunteer"}
+
+								{type == 1 ? "Student" : "Volunteer"}
+								
 							</Card.Text>
 							<Card.Text className={classes.TextMuted}>Usertype</Card.Text>
 						</Col>

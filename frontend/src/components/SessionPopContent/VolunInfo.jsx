@@ -23,7 +23,7 @@ const VolunInfo = (props) => {
 	const appContext = useContext(AppContext);
 	const profileContext = useContext(ProfileContext);
 	const { ProfileData } = profileContext;
-	const { forStudentMsg, getMeeting, meetLink, receivingUser, setReceivingUser, studentDetails } =
+	const { forStudentMsg, getMeeting, setMeetLink, meetLink, receivingUser, setReceivingUser, studentDetails } =
 		appContext;
 	const receivingUserData = receivingUser;
 	const ACCEPTED = "ACCEPTED";
@@ -34,14 +34,19 @@ const VolunInfo = (props) => {
 	const isVolun = displayingFor == "student" ? false : true;
 	const panelHeader = displayingFor == "student" ? "Assigned Mentor" : "";
 	const [message, setMessage] = useState("Not Set");
+	const [disable,setDisable] = useState(false);
+	
+	
 	function SessionMeetGeneration(msgType) {
+		setDisable(true);
 		if (msgType) {
 			getMeeting();
 			setMessage(ACCEPTED);
 		}
 		else {
+			setMeetLink("NULL");
 			setMessage(REJECTED);
-		}
+		};
 		const newReceivingUser = {
 			username: studentDetails.username,
 			name: studentDetails.name,
@@ -52,10 +57,10 @@ const VolunInfo = (props) => {
 	}
 
 	useEffect(() => {
-		const meetURL = meetLink;
+		// const meetURL = meetLink;
 		if (receivingUser.username === "") return;
 		if (receivingUser.type == "student") {
-			if(message == "ACCEPTED") props.sendMessage(message + ' ' + meetURL);
+			if(message == "ACCEPTED") props.sendMessage(message + ' ' + meetLink);
 			else props.sendMessage(message);
 		}
 	}, [receivingUser]);
@@ -66,7 +71,7 @@ const VolunInfo = (props) => {
 		toBedisplayed = (
 			<Container>
 				<Container>
-					<Content> {ProfileData.firstname + " " + ProfileData.lastname}</Content>
+					<Content> Name: &nbsp; {(ProfileData.firstname + " " + ProfileData.lastname).toUpperCase()} ({ProfileData.username})</Content>
 					<Sidebar>
 						<div style={{ float: "right", display: "flex", columnGap: "2px" }}>
 							<Button
@@ -75,6 +80,7 @@ const VolunInfo = (props) => {
 								onClick={() => 
 									SessionMeetGeneration(true)
 								}
+								disabled={disable}
 							>
 								Accept
 							</Button>
@@ -84,6 +90,7 @@ const VolunInfo = (props) => {
 								onClick={() => 
 									SessionMeetGeneration(false)
 								}
+								disabled={disable}
 							>
 								Reject
 							</Button>
@@ -97,23 +104,25 @@ const VolunInfo = (props) => {
 		toBedisplayed = (
 			<div>
 				<div style={{ display: "flex" }}>
-					<div> {receivingUserData.name} </div>
-					{forStudentMsg === "" ? (
-						<div style={{ float: "right" }}>
-							<Badge color="red">Waiting for response</Badge>
-						</div>
-					) : forStudentMsg === "ACCEPTED" ? (
-						<div style={{ float: "right" }}>
-							<Badge color="red">{forStudentMsg}</Badge>
-						</div>
-					) : (
-						<div style={{ float: "right" }}>
-							<Badge color="red">{forStudentMsg}</Badge>
-						</div>
-					)}
+					<div> Name: &nbsp; {receivingUserData.name.toUpperCase()}  ({receivingUser.username}) </div>
+					<div style={{ float: 'right', position: 'absolute', right: 17 }}>
+						{forStudentMsg === "" ? (
+							<div style={{ float: "right" }}>
+								<Badge color="yellow">Waiting for response</Badge>
+							</div>
+						) : forStudentMsg === "ACCEPTED" ? (
+							<div style={{ float: "right" }}>
+								<Badge color="green">{forStudentMsg}</Badge>
+							</div>
+						) : (
+							<div style={{ float: "right" }}>
+								<Badge color="red">{forStudentMsg}</Badge>
+							</div>
+						)}
+					</div>
+					
 					<br />
 				</div>
-				<p> {receivingUserData.username} </p>
 			</div>
 		);
 	}

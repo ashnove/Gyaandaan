@@ -4,7 +4,7 @@ import axios from "axios";
 import userData from "../data/userData";
 
 const ProfileState = (props) => {
-	const host = "http://localhost:8080";
+	const host = "http://localhost:8080/gydn";
 	const [ProfileData, setProfileData] = useState({
 		username: "",
 		firstname: "",
@@ -46,6 +46,7 @@ const ProfileState = (props) => {
 		);
 		if (json.data.success)
 			setProfileData((prevState) => ({ ...prevState, type: type }));
+		
 		// console.log(ProfileData);
 	};
 

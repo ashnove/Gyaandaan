@@ -46,8 +46,8 @@ const Profile = () => {
 		<Panel bordered  style={{ margin: '70px', marginTop: '2vh', backgroundColor: '#ecf0f1'}}>
 			<div>
 				<p style={{color: '#2c3e50', textAlign: 'center', fontSize:'20px'}}>
-					You have Comleted XX sessions. Ready for another? &nbsp; &nbsp; 
-					<AsyncToggle checkedChildren="Yes" unCheckedChildren="No" />
+					You have Comleted {sessions} sessions. Ready for another? &nbsp; &nbsp; 
+					<AsyncToggle  checkedChildren="Mentor Mode Activated" unCheckedChildren="Mentor Mode Deactivated"/>
 				</p>
 
 				<hr />

@@ -30,7 +30,7 @@ function HomeContent() {
 		initializeReceivingUser,
 	} = appContext;
 	const { ProfileData, getProfileData, changeUserType } = profileContext;
-	const {type } = ProfileData;
+	const {name, type } = ProfileData;
 
 	const [open, setOpen] = useState(false);
 	const handleOpen = () => {
@@ -65,7 +65,7 @@ function HomeContent() {
 		});
 		// if (json.success) {
 		setLoading(false);
-		setStudentDetails({ name: "ONKAR" });
+		setStudentDetails({ name: name });
 		const newReceivingUser = {
 			username: json.volunteerUsername,
 			name: json.volunteerName,
@@ -78,6 +78,7 @@ function HomeContent() {
 	const isVolunteer = loggedInUser.type == 0 ? true : false;
 	useEffect(() => {
 		connect();
+		getProfileData();
 	}, []);
 
 	//SOCKET STARTS
@@ -116,6 +117,7 @@ function HomeContent() {
 		}
 		if (content == "REJECTED") {
 			setStudentMsg("Rejected");
+			setMeetLink("NULL");
 			// setTimeout(() => setOpen(false), 3000);
 		}
 		const notification = JSON.parse(msg.body);
@@ -153,8 +155,8 @@ function HomeContent() {
 			<div style={{ padding: '100px'}}>
 				<div style={{textAlign: 'center', marginBottom: '8vh'}}>
 					<p className="text-white" style={{ fontSize:'20px'}}>
-					Ready to recieve a Session Requests Mr. Onkar? ;)  &nbsp; &nbsp; 
-					<AsyncToggle  checkedChildren="Enable" unCheckedChildren="Disabled" />
+					Ready to recieve a Session Requests {name}? ;)  &nbsp; &nbsp; 
+					<AsyncToggle  checkedChildren="Mentor Mode Activated" unCheckedChildren="Mentor Mode Deactivated" />
 					</p>
 					<br />
 					<SingleDropDown handleSelect={handleSelect} />
@@ -173,6 +175,7 @@ function HomeContent() {
 						sendMessage={sendMessage}
 						onLoad={handleLoad}
 						volunteer={receivingUser}
+						name={currentUser.name}
 					/>
 				</div>
 				<hr/>	
