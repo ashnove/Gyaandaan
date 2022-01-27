@@ -1,8 +1,28 @@
+
+GET http://localhost:8080/volunteers
+
 ###
 
-GET  http://localhost:8080/download
+POST  http://localhost:8080/addTopic
+Content-Type: application/json
+
+[
+    {
+        "topicName" : "DSA",
+        "category": "CSE"
+    }
+]
+
+###
+
+POST http://localhost:8080/saveStudentPref
 Content-Type: application/json
 
 {
-    "path": "/home/ashnove/Documents/NETMEDS/ExchangePortal/TEST2/NPRS.json"
+    "username": "dwight",
+    "topics": [
+        {
+            "topicName": "DSA"
+        }
+    ]
 }

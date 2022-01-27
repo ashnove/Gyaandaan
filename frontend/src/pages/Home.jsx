@@ -8,11 +8,19 @@ const Home = () => {
 	const { getProfileData } = profileContext;
 
 	const loaderStyle = {
-		height: "800px",
-		width: "100% ",
+		position: "fixed",
+		zIindex: "999",
+		height: "2em",
+		width: "10em",
+		overflow: "show",
 		margin: "auto",
-		padding: "200px",
-		backgroundColor: "grey",
+		top: "0",
+		left: "0",
+		bottom: "0",
+		right: "0",
+		size: "100"
+		// opacity: "0.5",
+		// backgroundColor: "#2c3e50",
 	};
 
 	const [loading, setLoading] = useState(true);
