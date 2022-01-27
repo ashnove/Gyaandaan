@@ -9,7 +9,7 @@ import ProfileContext from "../context/ProfileContext";
 const temp = {
 	width: "auto",
 	margin: "auto",
-	backgroundColor: "grey",
+	backgroundColor: "#c8d6e5",
 };
 
 const Profile = () => {
