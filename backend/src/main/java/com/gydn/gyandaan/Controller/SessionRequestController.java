@@ -37,6 +37,14 @@ public class SessionRequestController {
         recievedRequest.setContent(sessionRequest.getContent());
         recievedRequest.setRecipientId(sessionRequest.getRecipientId());
         recievedRequest.setRecipientName(sessionRequest.getRecipientName());
+        String[] splitMessage = sessionRequest.getContent().split(" ");
+        if(splitMessage.length>1){
+            recievedRequest.setMeetLink(splitMessage[1]);
+            recievedRequest.setContent(splitMessage[0]);
+        }
+        else {
+            recievedRequest.setMeetLink("Meet link is not generated for the sesison");
+        }
         logger.info(sessionRequest.getSenderName() + " sent '" + sessionRequest.getContent() + "' to "
                 + sessionRequest.getRecipientName());
         messagingTemplate.convertAndSendToUser(sessionRequest.getRecipientId(), "/queue/requests", recievedRequest);
