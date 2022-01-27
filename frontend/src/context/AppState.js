@@ -62,6 +62,7 @@ const AppState = (props) => {
 	const getMeeting = async () => {
 		// const json = await axios.get(`${host}/meeting`);
 		// setMeetLink(json.data.joinUrl);
+		setMeetLink("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
 	};
 
 	//States
@@ -97,6 +98,7 @@ const AppState = (props) => {
 				studentDetails,
 				setStudentDetails,
 				meetLink,
+				setMeetLink,
 				receivingUser,
 				setReceivingUser,
 				initializeReceivingUser,
