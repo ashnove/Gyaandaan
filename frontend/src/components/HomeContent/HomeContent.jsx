@@ -103,23 +103,24 @@ function HomeContent() {
 		const contentBody = JSON.parse(msg.body);
 		const content = contentBody.content;
 		// console.log(contentBody);
-		// const meetURLSocketResponse = contentBody.meetURL;
+		const meetURLSocketResponse = contentBody.meetLink;
 		if (content == "REQUEST") {
 			setStudentDetails({ name: contentBody.senderName, username: contentBody.senderId });
 			setOpen(true);
 		}
 		if (content == "ACCEPTED") {
 			setStudentMsg("Accepted");
-			// setMeetLink(meetURLSocketResponse);
+			setMeetLink(meetURLSocketResponse);
 		}
 		if (content == "REJECTED") {
 			setStudentMsg("Rejected");
-			setTimeout(() => setOpen(false), 3000);
+			// setTimeout(() => setOpen(false), 3000);
 		}
 		const notification = JSON.parse(msg.body);
 	};
 
 	const sendMessage = (msg) => {
+		console.log("here" + msg);
 		if (msg.trim() !== "") {
 			console.log(receivingUser);
 			const message = {
@@ -147,7 +148,7 @@ function HomeContent() {
 
 	return (
 		<React.Fragment>
-			<div style={{ marginTop: "15vh", textAlign: "center" }}>
+			<div style={{ marginTop: "20vh", textAlign: "center" }}>
 				<SingleDropDown handleSelect={handleSelect} />
 				<Button
 					appearance="primary"
@@ -166,7 +167,7 @@ function HomeContent() {
 					volunteer={receivingUser}
 				/>
 			</div>
-			<div style={{ marginTop: "15vh" }}>
+			<div style={{ marginTop: "1vh" }}>
 				<Divider className={"text-white"}>Trending Topics</Divider>
 				<TrendingTable />
 			</div>

@@ -33,9 +33,15 @@ const VolunInfo = (props) => {
 
 	const isVolun = displayingFor == "student" ? false : true;
 	const panelHeader = displayingFor == "student" ? "Assigned Mentor" : "";
-	let message = "";
+	const [message, setMessage] = useState("Not Set");
 	function SessionMeetGeneration(msgType) {
-		if (msgType) getMeeting();
+		if (msgType) {
+			getMeeting();
+			setMessage(ACCEPTED);
+		}
+		else {
+			setMessage(REJECTED);
+		}
 		const newReceivingUser = {
 			username: studentDetails.username,
 			name: studentDetails.name,
@@ -48,7 +54,10 @@ const VolunInfo = (props) => {
 	useEffect(() => {
 		const meetURL = meetLink;
 		if (receivingUser.username === "") return;
-		if (receivingUser.type === "student") props.sendMessage(ACCEPTED + " " + meetURL);
+		if (receivingUser.type == "student") {
+			if(message == "ACCEPTED") props.sendMessage(message + ' ' + meetURL);
+			else props.sendMessage(message);
+		}
 	}, [receivingUser]);
 
 	let toBedisplayed;
@@ -63,20 +72,18 @@ const VolunInfo = (props) => {
 							<Button
 								color="green"
 								appearance="primary"
-								onClick={() => {
-									message = ACCEPTED;
-									SessionMeetGeneration(true);
-								}}
+								onClick={() => 
+									SessionMeetGeneration(true)
+								}
 							>
 								Accept
 							</Button>
 							<Button
 								color="red"
 								appearance="primary"
-								onClick={() => {
-									message = REJECTED;
-									SessionMeetGeneration(false);
-								}}
+								onClick={() => 
+									SessionMeetGeneration(false)
+								}
 							>
 								Reject
 							</Button>

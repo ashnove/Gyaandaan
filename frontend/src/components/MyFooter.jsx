@@ -6,7 +6,8 @@ import { Container, Header, Content, Footer, Sidebar, Panel } from 'rsuite';
 var style = {
     bottom: "0",
     width: "100%",
-    zIndex:"-100"
+    zIndex:"-100",
+    position: "absolute"
 }
 
 const MyFooter = () => {
