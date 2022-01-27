@@ -1,14 +1,15 @@
 .Editform {
-	padding: 50px;
+	padding: 30px;
 }
 
 .Profile {
-	padding: 50px;
+	padding: 30px;
+	position: relative;
 }
 
 .ProfileCard {
 	/* min-width: 200px; */
-	width: 3x0px;
+	width: 350px;
 	border-radius: 20px !important;
 	border: none !important;
 	padding: none;

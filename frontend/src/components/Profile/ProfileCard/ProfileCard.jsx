@@ -15,7 +15,6 @@ const ProfileCard = (props) => {
 	const { ProfileData, setAvailability } = profileContext;
 	const { username, firstname, email, lastname, isAvailable, sessions, type } = ProfileData;
 	let temp;
-	// console.log(ProfileData);
 
 	const [usertype, setUsertype] = useState(type);
 
@@ -93,10 +92,9 @@ const ProfileCard = (props) => {
 			</Dropdown.Item>
 		</Dropdown>
 	);
-	const clsname = props.forWhat == "Profile" ? classes.Profile : classes.Editform;
 
 	return (
-		<div className={clsname}>
+		<div className={classes.Profile}>
 			<Card className={classes.ProfileCard + " mx-auto"}>
 				<Card.Img
 					className={classes.ProfileCardBackgroundImage}
@@ -129,8 +127,8 @@ const ProfileCard = (props) => {
 
 					<div className="container">
 						<div className="row">
-							<div className="col-sm">{selectUsertypeDropdown}</div>
-							<div className="col-sm">{selectStatusDropdown}</div>
+							<div className="col">{selectUsertypeDropdown}</div>
+							<div className="col">{selectStatusDropdown}</div>
 						</div>
 					</div>
 					<br />

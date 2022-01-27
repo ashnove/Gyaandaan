@@ -32,7 +32,7 @@ const Profile = () => {
 				<div className="container">
 					<div className="row">
 						<div className="col-sm">
-							<ProfileCard forWhat="Profile" />
+							<ProfileCard />
 						</div>
 						<div className="col-sm">
 							<UserEdit />
