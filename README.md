@@ -1,6 +1,9 @@
 # CRED_AV
 
 
+[Idea PPT Link](https://docs.google.com/presentation/d/1h75o6sBm61LF148QxrL1JXNTpRNRAXkTazjx8qQ_Sik/edit?usp=sharing)
+
+
 
 # FILE DIRECTORY TREE
 
